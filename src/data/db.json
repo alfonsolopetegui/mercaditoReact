@@ -1,0 +1,140 @@
+{
+  "productos": [
+    {
+      "nombre": "Playstation 5",
+      "marca": "Sony",
+      "distribuidor": "Sony",
+      "categoria": "Juegos",
+      "precio": "499900",
+      "id": 6
+    },
+    {
+      "nombre": "Nintendo Switch",
+      "marca": "Nintendo",
+      "distribuidor": "Nintendo",
+      "categoria": "Juegos",
+      "precio": "3190000",
+      "id": 8
+    },
+    {
+      "nombre": "Rack TV",
+      "marca": "Celsius",
+      "distribuidor": "López SA",
+      "categoria": "Muebles",
+      "precio": "45900",
+      "id": 9
+    },
+    {
+      "nombre": "Redmi Note 11",
+      "marca": "Xiaomi",
+      "distribuidor": "Xiaomi",
+      "categoria": "Celulares",
+      "precio": "259000",
+      "id": 10
+    },
+    {
+      "nombre": "Smart TV",
+      "marca": "Noblex",
+      "distribuidor": "Noblex",
+      "categoria": "Televisores",
+      "precio": "198000",
+      "id": 11
+    },
+    {
+      "nombre": "Guitarra eléctrica",
+      "marca": "Epiphone",
+      "distribuidor": "López SA",
+      "categoria": "Instrumentos",
+      "precio": "498000",
+      "id": 12
+    },
+    {
+      "nombre": "Mesa de Jardín",
+      "marca": "Buenix",
+      "distribuidor": "López SA",
+      "categoria": "Muebles",
+      "precio": "79000",
+      "id": 13
+    },
+    {
+      "nombre": "I Phone XII",
+      "marca": "Apple",
+      "distribuidor": "Riestro Distribuidor",
+      "categoria": "Celulares",
+      "precio": "659000",
+      "id": 14
+    },
+    {
+      "nombre": "Smart TV",
+      "marca": "Philips",
+      "distribuidor": "Philips",
+      "categoria": "Televisores",
+      "precio": "156000",
+      "id": 15
+    },
+    {
+      "nombre": "guitarra eléctrica",
+      "marca": "Fender",
+      "distribuidor": "López SA",
+      "categoria": "Instrumentos",
+      "precio": "1299000",
+      "id": 16
+    },
+    {
+      "nombre": "Mouse inalámbrico",
+      "marca": "Genius",
+      "distribuidor": "Genius",
+      "categoria": "Informática",
+      "precio": "8900",
+      "id": 17
+    },
+    {
+      "nombre": "Playstation 5",
+      "marca": "Sony",
+      "distribuidor": "Sony",
+      "categoria": "Juegos",
+      "precio": "499900",
+      "id": 18
+    },
+    {
+      "nombre": "Age of Empires IV",
+      "marca": "EA",
+      "distribuidor": "EA",
+      "categoria": "Juegos",
+      "precio": "12000",
+      "id": 19
+    },
+    {
+      "nombre": "Afeitadora",
+      "marca": "Philips",
+      "distribuidor": "Philips",
+      "categoria": "Electrodomésticos",
+      "precio": "11900",
+      "id": 20
+    },
+    {
+      "nombre": "Silla Gamer",
+      "marca": "Gamix",
+      "distribuidor": "Eco",
+      "categoria": "Muebles",
+      "precio": "90000",
+      "id": 21
+    },
+    {
+      "nombre": "Bajo eléctrico",
+      "marca": "Leonard",
+      "distribuidor": "Eco",
+      "categoria": "Instrumentos",
+      "precio": "129000",
+      "id": 22
+    },
+    {
+      "nombre": "Luis alberto",
+      "marca": "Peugeot",
+      "distribuidor": "frente",
+      "categoria": "presidente",
+      "precio": "499900",
+      "id": 23
+    }
+  ]
+}
