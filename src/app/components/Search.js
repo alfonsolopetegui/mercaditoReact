@@ -1,6 +1,7 @@
 "use client";
 import { useContext, useState } from "react";
 import DataContext from "../context/DataContext";
+import styles from '../../styles/search.module.css'
 
 export const Search = () => {
   const {
@@ -21,8 +22,8 @@ export const Search = () => {
   };
 
   return (
-    <div className="search-container">
-      <div className="search-input-container">
+    <div className={styles["search-container"]}>
+      <div className={styles["search-input-container"]}>
         <input
           id="auto"
           placeholder="Search"
@@ -31,7 +32,7 @@ export const Search = () => {
         />
       </div>
       {search && (
-        <div className="auto-container">
+        <div className={styles["auto-container"]}>
           {data
             .filter((elem) =>
               elem.nombre.toLowerCase().includes(search.toLowerCase())
@@ -40,11 +41,11 @@ export const Search = () => {
               return (
                 <div
                   key={i}
-                  className="autocomplete-item"
+                  className={styles["autocomplete-item"]}
                   onClick={() => handleAuto(v)}
                 >
                   <h4>{v.nombre.toLowerCase()}</h4>
-                  <h4>{v.marca.toLowerCase()}</h4>
+                  <h4>{v.cantidad.toLowerCase()}</h4>
                 </div>
               );
             })}

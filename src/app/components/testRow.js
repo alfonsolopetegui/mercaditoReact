@@ -3,6 +3,7 @@ import DataContext from "../context/DataContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faTrashCan, faFilePen } from "@fortawesome/free-solid-svg-icons";
+import styles from '../../styles/testRow.module.css'
 // import { faFaceRelieved } from '@fortawesome/free-solid-svg-icons'
 
 export const TestRow = (props) => {
@@ -27,38 +28,22 @@ export const TestRow = (props) => {
     // console.log(product);
   };
 
-  // const handleDelete = async (e) => {
-  //   try {
-  //     const response = await borrarProducto(product);
-  //     if (response.status === 200) {
-  //       console.log(response.product.msg);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al borrar el producto");
-  //   } finally {
-  //     setVisibleSelected(false);
-  //     setPagination({
-  //       currentPage: 0,
-  //     });
-  //     setTable(true);
-  //   }
-  // };
-
+ 
   return (
-    <tr className="fila-tabla">
+    <tr className={styles["fila-tabla"]}>
       <td>{product.nombre}</td>
-      <td>{product.marca}</td>
+      <td>{product.precioBase}</td>
+      <td>{product.precio}</td>
+      <td>{product.cantidad}</td>
       <td>{product.categoria}</td>
-      <td>{product.precio.base}</td>
-      <td>{product.codigo}</td>
       <td>
-        <button className="botones" onClick={() => handleEdit(product)}>
-        <FontAwesomeIcon className="icono" icon={faFilePen} />
+        <button className={styles["botones"]} onClick={() => handleEdit(product)}>
+        <FontAwesomeIcon className={styles["icono"]} icon={faFilePen} />
         </button>
       </td>
       <td>
-        <button className="botones" onClick={() => onDeleteProduct(product)}>
-        <FontAwesomeIcon className="icono" icon={faTrashCan} />
+        <button className={styles["botones"]} onClick={() => onDeleteProduct(product)}>
+        <FontAwesomeIcon className={styles["icono"]} icon={faTrashCan} />
         </button>
       </td>
     </tr>

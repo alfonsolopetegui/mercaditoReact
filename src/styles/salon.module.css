@@ -1,0 +1,21 @@
+.salon-principal-container {
+    display: flex;
+}
+.prohibited-message {
+    display: flex;
+    justify-content: space-between;
+    background-color: #E70E02;
+    padding: 20px;
+    box-shadow: 0 0 2px 2px #F42B03;
+    margin-top: 2px;
+}
+
+.prohibited-message h1 {
+    font-size: 20px;
+    color:whitesmoke
+}
+.prohibited-message span {
+    color: whitesmoke;
+    font-weight: 600;
+    cursor: pointer;
+}

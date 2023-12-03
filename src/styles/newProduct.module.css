@@ -1,0 +1,53 @@
+.form-new-product {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    width: 250px;
+    height: max-content;
+    border: none;
+    background-color: #5E7CE2;
+    padding: 10px 15px 15px 15px;
+  }
+  
+  .form-new-product input {
+    height: 23px;
+    font-size: 16px;
+    border: none;
+    /* width: 80%; */
+    outline: none;
+    background: rgb(245, 230, 230);
+    margin-bottom: 3px;
+    padding-left: 3px;
+  }
+  
+  .form-new-product label {
+    font-size: 12px;
+    font-weight: 600;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+  }
+  .formBtn {
+    cursor: pointer;
+    align-self: center;
+    width: fit-content;
+    padding: 3px 5px;
+    margin-top: 10px;
+    background-color: #F18F01;
+    border: none;
+    color:whitesmoke ;
+    font-weight: 600;
+  }
+
+  .close-btn-container {
+    
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+  }
+
+  .close-btn {
+    color: whitesmoke;
+    cursor: pointer;
+  }

@@ -1,0 +1,46 @@
+.carta-wrapper {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-bottom: 8px;
+  /* background-color: midnightblue; */
+  /* z-index: 10; */
+}
+
+.carta-container {
+    width: 120px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    gap: 5px;
+    height: fit-content;
+    background-color: orange;
+    padding: 10px;
+  }
+
+  .single-item-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  /* background-color: grey; */
+  }
+  
+  .carta-btn {
+    width: 120px;
+    height: 25px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 0px gray;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+  }
+  
+  .selected {
+    background-color: #F18F01;
+    color: white;
+  }
+  

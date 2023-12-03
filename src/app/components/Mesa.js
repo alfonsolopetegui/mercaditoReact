@@ -1,40 +1,59 @@
 import { useContext, useState } from "react";
 import Carta from "./Carta";
 import SalonContext from "../context/SalonProvider";
+import styles from "../../styles/mesa.module.css";
+
+//Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Mesa = (props) => {
   const { data, handler } = props;
   const [open, setOpen] = useState(false);
-  const { productosMesa, setProductosMesa, mesas, setMesaSeleccionada } =
+  const { setMesaSeleccionada, openMesaGrande, setOpenMesaGrande } =
     useContext(SalonContext);
-  // const [datosMesa, setDatosMesa] = useState({});
-
-  // setDatosMesa(data)
 
   const handleMenu = () => {
     setOpen(!open);
   };
 
-  const handleSeleccion = ()=> {
-    setMesaSeleccionada(data)
-  }
+  const handleSeleccion = () => {
+    setMesaSeleccionada(data);
+    setOpenMesaGrande(!openMesaGrande);
+  };
 
   return (
-    <>
-      <div className="mesa">
-        <h1 onClick={handleSeleccion} style={{cursor:'pointer'}}>Mesa N° : {data.numeroMesa}</h1>
-        <h6>Mozo: {data.nombreMozo}</h6>
-        <div className="mesa-contenido">
-          {productosMesa.length > 0 &&
-            productosMesa.map((prod, i) => {
-              return <h6 key={i}>{prod.prod.nombre}</h6>;
+    <div className={styles["mesa-wrapper"]}>
+      <div className={styles["mesa"]}>
+        <h1 onClick={handleSeleccion} className={styles["mesa-title"]}>
+          Mesa N° : {data.numeroMesa}
+        </h1>
+        <h5 className={styles["nombre-mozo"]}>Mozo: {data.nombreMozo}</h5>
+        <div className={styles["mesa-contenido"]}>
+          {data.contenido.length > 0 &&
+            data.contenido.map((prod, i) => {
+              return (
+                <article key={i}>
+                  <h6>{prod.nombre}</h6>
+                  <h6>x{prod.cantidad}</h6>
+                </article>
+              );
             })}
         </div>
-        <button onClick={handleMenu}>Menú</button>
-        <button onClick={handler}>Cerrar</button>
+        <div className={styles["mesa-btn-container"]}>
+          <button onClick={handleMenu} className={styles["mesa-btn"]}>
+            <h4>Menú</h4>
+            {open ? (
+              <FontAwesomeIcon icon={faChevronLeft} />
+            ) : (
+              <FontAwesomeIcon icon={faChevronRight} />
+            )}
+          </button>
+          {/* <button onClick={handler}>Cerrar</button> */}
+        </div>
       </div>
-      {open && <Carta />}
-    </>
+      <div className={styles["carta-wrapper"]}>{open && <Carta datosMesa={data} />}</div>
+    </div>
   );
 };
 

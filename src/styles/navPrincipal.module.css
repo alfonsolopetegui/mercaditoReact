@@ -1,0 +1,52 @@
+.nav-principal-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #F17300;
+    box-shadow: 0px 0px 4px 2px rgba(128, 128, 128, 0.562);
+    height: 9vh;
+}
+
+.nav-principal-container a {
+
+    font-size: 20px;
+    font-weight: 600;
+    /* padding-right: 30px; */
+    color: white;
+   
+}
+
+.nav-principal-container h2 {
+    cursor: pointer;
+    color: white;
+}
+
+.nav-principal-items {
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-principal-items a {
+    position: relative;
+    text-decoration: none;
+    color: whitesmoke; /* Puedes ajustar el color del texto según tu diseño */
+    margin: 0;
+  }
+  
+  .nav-principal-items a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; /* Inicialmente establece el ancho en 0 */
+    height: 3px;
+    background: whitesmoke; /* Puedes ajustar el color de la línea según tu diseño */
+    transition: width 0.3s; /* Agrega una transición suave */
+  }
+  
+  .nav-principal-items a.active::after {
+    width: 60%; /* Ajusta el ancho cuando el enlace está activo */
+    
+  }

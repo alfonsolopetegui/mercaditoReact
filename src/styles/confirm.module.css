@@ -1,0 +1,48 @@
+.confirm-wrapper {
+  background-color: rgba(0, 0, 0, 0.507);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.confirm-container {
+  width: 350px;
+  height: 120px;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* position: absolute;
+  top: 45%;
+  left: 30%; */
+}
+
+.confirm-container h2 {
+  font-size: 16px;
+}
+
+.btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-container button {
+  padding: 3px 5px;
+  border: none;
+  background-color: #f56960;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-container button:nth-child(even) {
+  background-color: #3e7cb1;
+}

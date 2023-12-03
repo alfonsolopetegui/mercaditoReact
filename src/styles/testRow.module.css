@@ -1,0 +1,25 @@
+.fila-tabla {
+    height: 30px;
+  }
+  
+  .botones {
+    width: 15px;
+    cursor: pointer;
+    background: none;
+    /* color: grey; */
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 0 20px 0 0;
+  }
+
+  .icono {
+    color: #054A91;
+  }
+  .fila-tabla td {
+    text-align: center;
+    padding: 2px;
+    height: 20px;
+    border-bottom: solid 1px rgba(7, 35, 45, 0.34);
+    border-top: solid 1px rgba(7, 35, 45, 0.34);
+  }

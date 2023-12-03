@@ -1,7 +1,8 @@
 "use client";
+import React, { useContext, useState, useMemo } from "react";
 import { TestRow } from "./testRow";
 import DataContext from "../context/DataContext";
-import { useContext, useEffect, useRef, useState } from "react";
+import styles from "../../styles/testTable.module.css";
 
 const itemsPerPage = 15;
 
@@ -12,149 +13,88 @@ const TestTable = () => {
     visibleSelected,
     pagination,
     setPagination,
-    setTable,
-    setVisibleSelected,
     borrarProducto,
+    setRecargar,
   } = useContext(DataContext);
 
   const [activeBtn, setActiveBtn] = useState(0);
 
-  const pageBtns = useRef(null);
+  const pages = useMemo(() => Math.ceil(data.length / itemsPerPage), [data]);
 
-  const pages = data && Math.ceil(data.length / itemsPerPage);
+  const selected = useMemo(() => (visibleSelected ? [currentFilter] : []), [visibleSelected, currentFilter]);
 
-  const postaPages = [];
-
-  for (let i = 0; i < pages; i++) {
-    postaPages.push(i);
-  }
-
-  const selected = [currentFilter];
-
-  const handlePagination = (e, pageIndex) => {
-    const buttons = pageBtns.current.querySelectorAll(".pagination-item");
-
-    // buttons.forEach((button) => {
-    //   button.classList.remove("active");
-    // });
-
-    // e.target.classList.add("active");
-
-    // Restablece la clase "active" de la página actual
-    buttons[activeBtn].classList.remove("active");
-
-    // Actualiza el estado de la página activa con el nuevo índice de página
+  const handlePagination = (pageIndex) => {
     setActiveBtn(pageIndex);
-
-    // Agrega la clase "active" al botón de la página seleccionada
-    buttons[pageIndex].classList.add("active");
-
-    // if (e.target.value == 0) {
-    //   e.target.classList.add("active");
-    //   setPagination(initialPagination);
-    //   return
-    // }
-
     setPagination({
       currentPage: pageIndex,
       minIndexPage: itemsPerPage * pageIndex,
       maxIndexPage: itemsPerPage * (pageIndex + 1),
     });
-
-    // e.target.classList.add("active");
-    //   setPagination({
-    //     minIndexPage: initialPagination.minIndexPage + 15 * e.target.value,
-    //     maxIndexPage: initialPagination.maxIndexPage + 15 * e.target.value,
-    //   });
   };
 
   const handleDelete = async (product) => {
     try {
-      const response = await borrarProducto(product);
-      if (response.status === 200) {
-        console.log(response.data.msg);
-      }
+      await borrarProducto(product);
+      console.log("Producto eliminado con éxito");
     } catch (error) {
       console.error("Error al borrar el producto");
     } finally {
-      if(visibleSelected) {
-        await setTable(true);
-        setVisibleSelected(false)
-        return
+      if (visibleSelected) {
+        await setRecargar(true);
+      } else {
+        setPagination({
+          currentPage: 0,
+          maxIndexPage: itemsPerPage,
+          minIndexPage: 0,
+        });
+        setActiveBtn(0);
       }
-      setPagination({
-        currentPage: 0,
-        maxIndexPage: itemsPerPage,
-        minIndexPage: 0,
-      });
-
-      const buttons = pageBtns.current.querySelectorAll(".pagination-item");
-      buttons[activeBtn].classList.remove("active");
-      setActiveBtn(0);
-      buttons[0].classList.add("active");
-      // setVisibleSelected(false);
-      setTable(true);
     }
   };
 
+ 
   return (
-    <div className="table-content">
-      <table>
+    <div className={styles["table-content"]}>
+      <table className={styles["products-table"]}>
         <tbody>
-          <tr>
+          <tr className={styles["table-titles"]}>
             <th>Nombre</th>
-            <th>Marca</th>
-            <th>Categoría</th>
+            <th>Precio Base</th>
             <th>Precio</th>
-            <th>Código</th>
+            <th>Cantidad</th>
+            <th>Categoría</th>
           </tr>
-          {visibleSelected
-            ? selected.map((producto, index) => {
-                return (
-                  <TestRow
-                    key={index}
-                    product={producto}
-                    index={index}
-                    onDeleteProduct={handleDelete}
-                  />
-                );
-              })
-            : data.map((producto, index) => {
-                if (
-                  index >= pagination.minIndexPage &&
-                  index < pagination.maxIndexPage
-                )
-                  return (
-                    <TestRow
-                      key={index}
-                      product={producto}
-                      index={index}
-                      onDeleteProduct={handleDelete}
-                    />
-                  );
-              })}
+          {selected.map((producto, index) => (
+            <TestRow
+              key={index}
+              product={producto}
+              index={index}
+              onDeleteProduct={handleDelete}
+            />
+          ))}
+          {!visibleSelected &&
+            data.slice(pagination.minIndexPage, pagination.maxIndexPage).map((producto, index) => (
+              <TestRow
+                key={index}
+                product={producto}
+                index={index}
+                onDeleteProduct={handleDelete}
+              />
+            ))}
         </tbody>
       </table>
 
-      <div ref={pageBtns} className="pagination">
-        {visibleSelected
-          ? selected.map((producto, index) => {
-              return <button key={index} data={producto} />;
-            })
-          : postaPages.map((page, index) => {
-              return (
-                <button
-                  className={
-                    index == 0 ? "pagination-item active" : "pagination-item"
-                  }
-                  key={index}
-                  onClick={(e) => handlePagination(e, index)}
-                  value={index}
-                >
-                  {index + 1}
-                </button>
-              );
-            })}
+      <div className={styles["pagination"]}>
+        {!visibleSelected &&
+          Array.from({ length: pages }, (_, index) => (
+            <button
+              key={index}
+              className={`${styles["pagination-item"]} ${index === activeBtn ? styles["active"] : ""}`}
+              onClick={() => handlePagination(index)}
+            >
+              {index + 1}
+            </button>
+          ))}
       </div>
     </div>
   );

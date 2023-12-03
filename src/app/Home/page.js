@@ -1,31 +1,56 @@
-"use client"
+"use client";
 import { Button } from "../components/Button";
-import { Nav } from "../components/Nav";
+import { AdminNav } from "../components/AdminNav";
 import { NewProduct } from "../components/NewProduct";
 import { Search } from "../components/Search";
 import TestTable from "../components/testTable";
-import styles from "../page.module.css";
+import styles from "../../styles/home.module.css";
 import DataContext from "../context/DataContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import AuthContext from "../context/AuthProvider";
+import { useRouter } from "next/navigation";
+import { NewUser } from "../components/NewUser";
 
 export default function Home() {
-  const { showForm } = useContext(DataContext);
+  const { showForm, visibleNewUser } = useContext(DataContext);
+  const { userRole, setRutaProhibida, userLoading } = useContext(AuthContext);
+
+  const router = useRouter();
+  const { push } = router;
+
+  useEffect(() => {
+    // Verifica si el usuario está cargando
+    if (userLoading) {
+      return; // Espera a que la información del usuario esté disponible
+    }
+
+    console.log(userRole);
+    if (userRole !== "admin") {
+      setRutaProhibida(true);
+      router.push("/Salon");
+    }
+  }, [userRole, userLoading, setRutaProhibida, router]);
 
   return (
     <>
-      <div className="app-container">
-        <div className="controls-container">
+      <div className={styles["app-container"]}>
+        <div className={styles["controls-container"]}>
           <Search />
 
-          <Nav />
+          <AdminNav />
 
           {showForm && (
-            <div className="new-product-container">
+            <div className={styles["new-product-container"]}>
               <NewProduct />
             </div>
           )}
+          {visibleNewUser &&
+            <div className={styles["new-product-container"]}>
+              <NewUser />
+            </div>
+          }
         </div>
-        <div className="table-container">
+        <div className={styles["table-container"]}>
           <TestTable />
         </div>
       </div>
