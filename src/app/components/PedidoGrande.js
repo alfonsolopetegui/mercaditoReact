@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import SalonContext from "../context/SalonProvider";
+import { DeliveryContext } from "../context/DeliveryContext";
 import styles from "../../styles/mesaGrande.module.css";
-import Counter from "./Counter";
-import Carta from "./Carta";
+import CounterPedidos from "./CounterPedidos";
+import CartaPedidos from "./CartaPedidos";
 import { Confirm } from "./Confirm";
 //Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,36 +26,37 @@ import Recibo from "./Recibo";
 
 const db = getFirestore(firebaseApp);
 
-const MesaGrande = () => {
+const PedidoGrande = () => {
   const {
-    mesas,
-    mesaSeleccionada,
-    setMesaSeleccionada,
-    OpenMesaGrande,
-    setOpenMesaGrande,
-    setRecargarMesas,
-  } = useContext(SalonContext);
+    pedidos,
+    pedidoSeleccionado,
+    setPedidoSeleccionado,
+    OpenPedidoGrande,
+    setOpenPedidoGrande,
+    setRecargarPedidos,
+  } = useContext(DeliveryContext);
 
   //Visualizar la carta
   const [open, setOpen] = useState(false);
   //Visualizar el confirm
   const [confirm, setConfirm] = useState(false);
   //Visualizar cierre de mesa
-  const [cerrarMesa, setCerrarMesa] = useState(false);
+  const [cerrarPedido, setCerrarPedido] = useState(false);
 
   const [efectivo, setEfectivo] = useState(0);
 
   const {
-    numeroMesa,
-    nombreMozo,
+    nombreCliente,
+    direccion,
+    numeroPedido,
     contenido,
     horaDeCreacion,
     fechaDeCreacion,
     id,
-  } = mesaSeleccionada;
+  } = pedidoSeleccionado;
 
   const handleClose = () => {
-    setOpenMesaGrande(false);
+    setOpenPedidoGrande(false);
     // setMesaSeleccionada(null);
   };
 
@@ -72,7 +73,7 @@ const MesaGrande = () => {
 
   //Cierra la mesa
   const handleCash = () => {
-    setCerrarMesa(!cerrarMesa);
+    setCerrarPedido(!cerrarPedido);
   };
 
   //Manejadores del confirm
@@ -93,12 +94,12 @@ const MesaGrande = () => {
 
     // Guardar en archivos
     try {
-      await addDoc(collection(db, "archivo"), {
-        nombreMozo,
+      await addDoc(collection(db, "archivos"), {
+        // nombreMozo,
         contenido,
         horaDeCreacion,
         fechaDeCreacion,
-        tipo: "mesa",
+        tipo: "pedido",
         horaDeCierre,
         fechaDeCierre,
         total: totalSum,
@@ -113,11 +114,11 @@ const MesaGrande = () => {
 
     // Eliminar de la colección principal
     try {
-      await deleteDoc(doc(db, "mesas", id));
-      setRecargarMesas(true);
+      await deleteDoc(doc(db, "pedidos", id));
+      setRecargarPedidos(true);
       setConfirm(false);
-      setOpenMesaGrande(false);
-      console.log("Mesa borrada con éxito");
+      setOpenPedidoGrande(false);
+      console.log("Pedido Borrado con éxito");
     } catch (error) {
       console.error(error);
     }
@@ -139,11 +140,13 @@ const MesaGrande = () => {
               icon={faRectangleXmark}
             />
           </div>
-          <h3>Mesa N°: {numeroMesa}</h3>
-          <h4>Mozo: {nombreMozo}</h4>
-          <h4>
+          <h3>Pedido N°: {numeroPedido}</h3>
+         
+          <h5>
             inicio: {fechaDeCreacion} {horaDeCreacion}
-          </h4>
+          </h5>
+          <h5>Cliente: {nombreCliente}</h5>
+          <h5>Dirección: {direccion}</h5>
         </div>
         <table>
           <tbody className={styles["mesa-grande-contenido"]}>
@@ -161,8 +164,8 @@ const MesaGrande = () => {
                     <td style={{ fontSize: "24px" }}>{item.nombre}</td>
                     {/* <td style={{ fontSize: "24px" }}>x{item.cantidad}</td> */}
                     <td style={{ fontSize: "24px" }}>
-                      <Counter
-                        dataMesa={mesaSeleccionada}
+                      <CounterPedidos
+                        dataPedido={pedidoSeleccionado}
                         key={i}
                         dataItem={item}
                       />
@@ -196,7 +199,7 @@ const MesaGrande = () => {
           </button>
           <button onClick={handleCash} className={styles["close-btn"]}>
             <h4>Cobrar y cerrar</h4>
-            {cerrarMesa ? (
+            {cerrarPedido ? (
               <FontAwesomeIcon icon={faChevronUp} />
             ) : (
               <FontAwesomeIcon icon={faChevronDown} />
@@ -206,13 +209,13 @@ const MesaGrande = () => {
       </div>
       {confirm && (
         <Confirm
-          text={"¿Estás seguro de cerrar esta mesa?"}
+          text={"¿Estás seguro de cerrar esta pedido?"}
           handleCancel={handleCancel}
           handleConfirm={handleConfirm}
         />
       )}
 
-      {cerrarMesa && (
+      {cerrarPedido && (
         <div className={styles["cerrar-mesa-container"]}>
           <div className={styles["input-container"]}>
             <label htmlFor="efectivo">
@@ -246,7 +249,7 @@ const MesaGrande = () => {
       )}
       {open && (
         <div className={styles["mesa-grande-menu"]}>
-          <Carta datosMesa={mesaSeleccionada} />
+          <CartaPedidos datosPedido={pedidoSeleccionado} />
         </div>
       )}
 
@@ -257,4 +260,4 @@ const MesaGrande = () => {
   );
 };
 
-export default MesaGrande;
+export default PedidoGrande;

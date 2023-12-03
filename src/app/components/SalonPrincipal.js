@@ -3,29 +3,40 @@ import SalonContext from "../context/SalonProvider";
 import { useContext, useState } from "react";
 import Mesa from "./Mesa";
 import MesaGrande from "./MesaGrande";
+import styles from "../../styles/salonPrincipal.module.css";
+import Loader from "./Loader";
 
 const SalonPrincipal = () => {
-  const { mesas, setMesas, mesaSeleccionada } = useContext(SalonContext);
+  const { mesas, setMesas, openMesaGrande } = useContext(SalonContext);
+
+  // Ordenar los pedidos por número de pedido
+  const mesasOrdenadas = [...mesas].sort((a, b) => a.numeroMesa - b.numeroMesa);
+  
 
   const closeHandler = (mesa) => {
-    const borrarMesas = mesas.filter((el) => el.numeroMesa !== mesa.numeroMesa);
-
-    setMesas(borrarMesas);
+    // const borrarMesas = mesas.filter((el) => el.numeroMesa !== mesa.numeroMesa);
+    // setMesas(borrarMesas);
   };
 
+  // console.log(mesas)
   return (
     <>
-      <div className="salon-mesas">
-        {mesas.length > 0
-          ? mesas.map((mesa, i) => {
-              return (
-                <Mesa key={i} data={mesa} handler={() => closeHandler(mesa)} />
-              );
-            })
-          : "Aun no hay mesas abiertas"}
-      </div>
-      {mesaSeleccionada && (
-        <div className="mesa-grande-container">
+      {mesasOrdenadas.length > 0 ? (
+        <div className={styles["salon-mesas"]}>
+          {mesasOrdenadas.map((mesa, i) => {
+            return (
+              <Mesa key={i} data={mesa} handler={() => closeHandler(mesa)} />
+            );
+          })}
+        </div>
+      ) : (
+        <div className={styles["aun-sin-mesas-container"]}>
+          <h1 className={styles["aun-sin-mesas"]}>Aun no hay mesas abiertas</h1>
+        </div>
+      )}
+
+      {openMesaGrande && (
+        <div className={styles["mesa-grande-container"]}>
           <MesaGrande />
         </div>
       )}

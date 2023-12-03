@@ -1,0 +1,37 @@
+.salon-mesas {
+   width: 1120px;
+    margin: 10px;
+    padding: 1px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .mesa-grande-container {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.502);
+  }
+
+  .aun-sin-mesas-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .aun-sin-mesas {
+    width:fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    border: solid 5px orange;
+    padding: 10px;
+    font-weight: 400;
+    border-radius: 15px;
+  }

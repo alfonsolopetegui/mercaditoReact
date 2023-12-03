@@ -1,20 +1,18 @@
 "use client";
 import { useContext, useEffect, useRef, useState } from "react";
 import DataContext from "../context/DataContext";
+import styles from "../../styles/newProduct.module.css";
+
+//Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRectangleXmark } from "@fortawesome/free-regular-svg-icons";
 
 const initialProduct = {
-  item: "",
   nombre: "",
-  marca: "",
-  descripcion: "",
-  categoria: "",
-  precio: {
-    base: "",
-    moneda: "",
-  },
-  codigo: "",
-  color: "",
+  precioBase: "",
+  precio: "",
   cantidad: "",
+  categoria: "",
 };
 
 export const NewProduct = () => {
@@ -24,38 +22,15 @@ export const NewProduct = () => {
   const form = useRef();
   const {
     crearProducto,
-    setTable,
+    setRecargar,
     edit,
     setEdit,
     update,
     setUpdate,
-    modificarProducto,
+    actualizarProducto,
     currentFilter,
     setCurrentFilter,
   } = useContext(DataContext);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "base" || name === "cantidad") {
-      e.target.value = Number(e.target.value);
-    }
-    if (name == "base" || name == "moneda") {
-      // Manejar campos del objeto anidado "precio"
-      setProduct({
-        ...product,
-        precio: {
-          ...product.precio,
-          [name]: value,
-        },
-      });
-    } else {
-      // Manejar campos fuera del objeto anidado "precio"
-      setProduct({
-        ...product,
-        [name]: value,
-      });
-    }
-  };
 
   // console.log(product)
   const handleSubmit = async (e) => {
@@ -63,9 +38,7 @@ export const NewProduct = () => {
     try {
       // Llama a crearProducto y espera la respuesta del servidor
       const response = await crearProducto(product);
-      if (response.status == 201) {
-        console.log(response.data.msg);
-      }
+      console.log("producto creado con éxito");
     } catch (error) {
       console.error("Error al crear el producto", error);
       // Maneja cualquier error de solicitud aquí
@@ -73,7 +46,7 @@ export const NewProduct = () => {
       form.current.reset();
       setProduct(initialProduct);
       // No es necesario esperar aquí, ya que estamos manejando la respuesta del servidor.
-      setTable(true);
+      setRecargar(true);
       setShowForm(false);
     }
   };
@@ -82,26 +55,26 @@ export const NewProduct = () => {
     e.preventDefault();
     try {
       if (currentFilter.length > 0) {
-        const response = await modificarProducto(product);
-        console.log(response.data.msg);
+        const response = await actualizarProducto(product);
+
         setCurrentFilter(product);
         // setTable(true);
         form.current.reset();
         setEdit(false);
         setUpdate(initialProduct);
       } else {
-        const response = await modificarProducto(product);
-        console.log(response.data.msg);
+        const response = await actualizarProducto(product);
+        // console.log(response);
         form.current.reset();
         setEdit(false);
         setUpdate(initialProduct);
         setCurrentFilter(product);
 
-        setTable(true);
+        setRecargar(true);
         setShowForm(false);
       }
     } catch (error) {
-      console.log(response.data.msg);
+      console.log(error);
     }
   };
 
@@ -112,114 +85,60 @@ export const NewProduct = () => {
     }
   }, [update]);
 
+  //Boton cerrar formulario
   const closeForm = () => {
     setUpdate({
-      item: "",
       nombre: "",
-      marca: "",
-      descripcion: "",
-      categoria: "",
-      precio: {
-        base: "",
-        moneda: "",
-      },
-      codigo: "",
-      color: "",
+      precioBase: "",
+      precio: "",
       cantidad: "",
-    })
+      categoria: "",
+    });
     setShowForm(false);
+    setEdit(false);
   };
 
   return (
     <div>
-      <h3 onClick={closeForm} style={{ cursor: "pointer" }}>
-        x
-      </h3>
       <form
         ref={form}
-        className="form-new-product"
+        className={styles["form-new-product"]}
         onSubmit={edit ? handleEdit : handleSubmit}
       >
-        <label htmlFor="item">item</label>
-        <input
-          type="text"
-          name="item"
-          id="item"
-          value={product.item}
-          onChange={handleChange}
-        ></input>
-
+        <div className={styles["close-btn-container"]}>
+          <FontAwesomeIcon
+            className={styles["close-btn"]}
+            onClick={closeForm}
+            icon={faRectangleXmark}
+          />
+        </div>
         <label htmlFor="nombre">nombre</label>
         <input
           type="text"
           name="nombre"
           id="nombre"
           value={product.nombre}
-          onChange={handleChange}
+          onChange={(e) => setProduct({ ...product, nombre: e.target.value })}
         ></input>
 
-        <label htmlFor="marca">marca</label>
-        <input
-          type="text"
-          name="marca"
-          id="marca"
-          value={product.marca}
-          onChange={handleChange}
-          minLength={4}
-        ></input>
-
-        <label htmlFor="descripcion">descripción</label>
-        <input
-          type="text"
-          name="descripcion"
-          id="descripcion"
-          value={product.descripcion}
-          onChange={handleChange}
-        ></input>
-
-        <label htmlFor="categoria">categoria</label>
-        <input
-          type="text"
-          name="categoria"
-          id="categoria"
-          value={product.categoria}
-          onChange={handleChange}
-        ></input>
-
-        <label htmlFor="base">precio</label>
+        <label htmlFor="precioBase">precio base</label>
         <input
           type="number"
-          name="base"
-          id="base"
-          value={product.precio.base}
-          onChange={handleChange}
+          name="precioBase"
+          id="precioBase"
+          value={product.precioBase}
+          onChange={(e) =>
+            setProduct({ ...product, precioBase: e.target.value })
+          }
         ></input>
 
-        <label htmlFor="moneda">moneda</label>
+        <label htmlFor="precio">precio</label>
         <input
-          type="text"
-          name="moneda"
-          id="moneda"
-          value={product.precio.moneda}
-          onChange={handleChange}
-        ></input>
-
-        <label htmlFor="codigo">código</label>
-        <input
-          type="text"
-          name="codigo"
-          id="codigo"
-          value={product.codigo}
-          onChange={handleChange}
-        ></input>
-
-        <label htmlFor="color">color</label>
-        <input
-          type="text"
-          name="color"
-          id="color"
-          value={product.color}
-          onChange={handleChange}
+          type="number"
+          name="precio"
+          id="precio"
+          value={product.precio}
+          onChange={(e) => setProduct({ ...product, precio: e.target.value })}
         ></input>
 
         <label htmlFor="cantidad">cantidad</label>
@@ -228,13 +147,24 @@ export const NewProduct = () => {
           name="cantidad"
           id="cantidad"
           value={product.cantidad}
-          onChange={handleChange}
+          onChange={(e) => setProduct({ ...product, cantidad: e.target.value })}
+        ></input>
+
+        <label htmlFor="categoria">categoría</label>
+        <input
+          type="text"
+          name="categoria"
+          id="categoria"
+          value={product.categoria}
+          onChange={(e) =>
+            setProduct({ ...product, categoria: e.target.value })
+          }
         ></input>
 
         {edit ? (
-          <button className="formBtn">modificar producto</button>
+          <button className={styles["formBtn"]}>modificar producto</button>
         ) : (
-          <button className="formBtn">crear producto</button>
+          <button className={styles["formBtn"]}>crear producto</button>
         )}
       </form>
     </div>

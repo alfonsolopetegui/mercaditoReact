@@ -1,0 +1,34 @@
+/* login */
+
+.login-wrapper {
+  position: absolute;
+    /* height: 100vh; */
+    top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .welcome {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .titulos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titulos h4, .titulos h5{
+    margin-bottom: 20px;
+  }
+
+  .comenzar-btn {
+    width: fit-content;
+    background-color: cornflowerblue;
+    color: whitesmoke;
+    padding: 3px 8px;
+  }

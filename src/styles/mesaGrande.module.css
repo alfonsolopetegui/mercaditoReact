@@ -1,0 +1,119 @@
+.mesa-grande {
+  /* border: 1px solid black; */
+  border-radius: 15px;
+  width: 600px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  padding: 15px;
+}
+.mesa-grande-header {
+  padding-bottom: 25px;
+}
+
+.mesa-grande-contenido {
+  background-color: #dbe4ee;
+}
+.mesa-grande-contenido th {
+  text-align: left;
+}
+
+/* .total-container {
+  display: flex;
+  justify-content: space-between;
+} */
+
+.btn-container {
+  display: flex;
+  margin-top: 25px;
+}
+
+.btn-container button {
+  cursor: pointer;
+  padding: 3px 10px;
+  margin-top: 5px;
+  background-color: #3e7cb1;
+  color: white;
+  font-weight: 600;
+  border: none;
+  margin-right: 20px;
+}
+
+.btn-container button:nth-child(even) {
+  background-color: #f56960;
+}
+.close-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  /* color: rgba(0, 0, 0, 0.537); */
+}
+
+.mesa-grande-menu {
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 15px;
+  background-color: white;
+  display: flex;
+  gap: 10px;
+}
+
+.cerrar-mesa-container {
+  width: 100%;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  align-items: center;
+  padding: 10px 0;
+}
+.cerrar-mesa-btn-container button {
+  cursor: pointer;
+  padding: 3px 10px;
+  margin-top: 5px;
+  background-color: #3e7cb1;
+  color: white;
+  font-weight: 600;
+  border: none;
+  margin-right: 20px;
+}
+
+.cerrar-mesa-btn-container button:nth-child(even) {
+  background-color: #f56960;
+}
+
+.cerrar-mesa-total {
+  padding: 5px 0;
+}
+
+.recibo-container {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
+.input-container label {
+  margin-right: 5px;
+}
+
+.input-container input {
+  font-size: 16px;
+  padding-left: 2px;
+}
+
+@media print {
+  .recibo-container {
+    position: initial;
+  }
+}

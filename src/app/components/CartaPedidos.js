@@ -1,15 +1,23 @@
 import React, { useContext, useState } from "react";
 import ItemList from "./ItemList";
-import SalonContext from "../context/SalonProvider";
+
 import DataContext from "../context/DataContext";
 import styles from "../../styles/carta.module.css";
+//Firebase
 import firebaseApp from "@/firebase";
 import { doc, setDoc, getFirestore } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
-const Carta = ({ datosMesa }) => {
-  const { mesas, setMesas, setMesaSeleccionada, setRecargarMesas } =
-    useContext(SalonContext);
+import { DeliveryContext } from "../context/DeliveryContext";
+
+const CartaPedidos = ({ datosPedido }) => {
+  const {
+    pedidos,
+    setPedidos,
+    recargarPedidos,
+    setRecargarPedidos,
+    setPedidoSeleccionado,
+  } = useContext(DeliveryContext);
   const { data, setRecargar } = useContext(DataContext);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [subMenu, setSubMenu] = useState(false);
@@ -20,20 +28,20 @@ const Carta = ({ datosMesa }) => {
   };
 
   // Agregar productos a determinada mesa
-  const agregarProductoAMesa = async (producto) => {
-    const mesaAModificar = mesas.find(
-      (mesa) => mesa.numeroMesa === datosMesa.numeroMesa
+  const agregarProductoAPedido = async (producto) => {
+    const pedidoAModificar = pedidos.find(
+      (pedido) => pedido.numeroPedido === datosPedido.numeroPedido
     );
 
-    if (mesaAModificar) {
-      const productoExistente = mesaAModificar.contenido.find(
+    if (pedidoAModificar) {
+      const productoExistente = pedidoAModificar.contenido.find(
         (item) => item.id === producto.id
       );
 
       if (productoExistente) {
-        const updatedMesa = {
-          ...mesaAModificar,
-          contenido: mesaAModificar.contenido.map((item) => {
+        const updatedPedido = {
+          ...pedidoAModificar,
+          contenido: pedidoAModificar.contenido.map((item) => {
             if (item.id === producto.id) {
               return {
                 ...item,
@@ -46,41 +54,39 @@ const Carta = ({ datosMesa }) => {
 
         try {
           // Obtener la referencia del documento con el ID correcto
-          const mesaDocRef = doc(db, "mesas", datosMesa.id);
+          const pedidoDocRef = doc(db, "pedidos", datosPedido.id);
 
           // Actualizar el documento en Firestore
-          await setDoc(mesaDocRef, updatedMesa);
-          console.log("Mesa actualizada con éxito en la base de datos");
+          await setDoc(pedidoDocRef, updatedPedido);
+          console.log("Pedido actualizada con éxito en la base de datos");
 
           // Actualizar el estado local
-          setMesaSeleccionada(updatedMesa);
-          setRecargarMesas(true);
+          setRecargarPedidos(true);
+          // setMesas(updatedMesas);
+          setPedidoSeleccionado(updatedPedido);
           setRecargar(true);
         } catch (error) {
           console.error(
-            "Error al actualizar la mesa en la base de datos",
+            "Error al actualizar el pedido en la base de datos",
             error
           );
         }
       } else {
         producto.cantidad = 1;
-        mesaAModificar.contenido.push(producto);
+        pedidoAModificar.contenido.push(producto);
 
         try {
-          const mesaDocRef = doc(db, "mesas", datosMesa.id);
+          const pedidoDocRef = doc(db, "pedidos", datosPedido.id);
 
           // Actualizar el documento en Firestore
-          await setDoc(mesaDocRef, mesaAModificar);
-          console.log("Mesa actualizada con éxito en la base de datos");
-
-          // Actualizar el estado local
-
-          setMesaSeleccionada({ ...mesaAModificar });
-          setRecargarMesas(true);
+          await setDoc(pedidoDocRef, pedidoAModificar);
+          console.log("Pedido actualizada con éxito en la base de datos");
+          setPedidoSeleccionado(pedidoAModificar)
+          setRecargarPedidos(true);
           setRecargar(true);
         } catch (error) {
           console.error(
-            "Error al actualizar la mesa en la base de datos",
+            "Error al actualizar el pedido en la base de datos",
             error
           );
         }
@@ -159,7 +165,7 @@ const Carta = ({ datosMesa }) => {
               <ItemList
                 key={i}
                 data={item}
-                handler={() => agregarProductoAMesa(item)}
+                handler={() => agregarProductoAPedido(item)}
               />
             ))}
         </div>
@@ -168,4 +174,4 @@ const Carta = ({ datosMesa }) => {
   );
 };
 
-export default Carta;
+export default CartaPedidos;
