@@ -13,7 +13,7 @@ import { NewUser } from "../components/NewUser";
 
 export default function Home() {
   const { showForm, visibleNewUser } = useContext(DataContext);
-  const { userRole, setRutaProhibida, userLoading } = useContext(AuthContext);
+  const { userRole, setRutaProhibida, rutaProhibida, userLoading } = useContext(AuthContext);
 
   const router = useRouter();
   const { push } = router;
@@ -33,27 +33,31 @@ export default function Home() {
 
   return (
     <>
-      <div className={styles["app-container"]}>
-        <div className={styles["controls-container"]}>
-          <Search />
+      {rutaProhibida ? (
+        <></>
+      ) : (
+        <div className={styles["app-container"]}>
+          <div className={styles["controls-container"]}>
+            <Search />
 
-          <AdminNav />
+            <AdminNav />
 
-          {showForm && (
-            <div className={styles["new-product-container"]}>
-              <NewProduct />
-            </div>
-          )}
-          {visibleNewUser &&
-            <div className={styles["new-product-container"]}>
-              <NewUser />
-            </div>
-          }
+            {showForm && (
+              <div className={styles["new-product-container"]}>
+                <NewProduct />
+              </div>
+            )}
+            {visibleNewUser && (
+              <div className={styles["new-product-container"]}>
+                <NewUser />
+              </div>
+            )}
+          </div>
+          <div className={styles["table-container"]}>
+            <TestTable />
+          </div>
         </div>
-        <div className={styles["table-container"]}>
-          <TestTable />
-        </div>
-      </div>
+      )}
     </>
   );
 }

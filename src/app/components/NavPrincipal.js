@@ -12,6 +12,7 @@ const NavPrincipal = () => {
   const currentPage = usePathname();
   const [paginaActiva, setPaginaActiva] = useState("");
 
+  const router = useRouter();
 
   useEffect(() => {
     setPaginaActiva(currentPage);
@@ -28,6 +29,10 @@ const NavPrincipal = () => {
     } catch (error) {
       console.error("Error al cerrar la sesión", error);
     }
+  };
+
+  const handleLogin = () => {
+    router.push("/");
   };
 
   return (
@@ -57,7 +62,11 @@ const NavPrincipal = () => {
               Administrador
             </Link>
           </div>
-          <h2 onClick={handleSignOut}>Log out</h2>
+          {user ? (
+            <h2 onClick={handleSignOut}>Log out</h2>
+          ) : (
+            <h2 onClick={handleLogin}>Log in</h2>
+          )}
         </div>
       ) : null}
     </>
