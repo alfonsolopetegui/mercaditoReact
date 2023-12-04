@@ -56,6 +56,7 @@ const Carta = ({ datosMesa }) => {
           setMesaSeleccionada(updatedMesa);
           setRecargarMesas(true);
           setRecargar(true);
+          console.log('recarga mesas desde Carta')
         } catch (error) {
           console.error(
             "Error al actualizar la mesa en la base de datos",
@@ -78,6 +79,7 @@ const Carta = ({ datosMesa }) => {
           setMesaSeleccionada({ ...mesaAModificar });
           setRecargarMesas(true);
           setRecargar(true);
+          console.log('recarga mesas desde Carta')
         } catch (error) {
           console.error(
             "Error al actualizar la mesa en la base de datos",

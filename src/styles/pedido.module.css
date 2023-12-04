@@ -134,7 +134,7 @@
 
 .carta-wrapper {
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   top: 48px;
 }
 

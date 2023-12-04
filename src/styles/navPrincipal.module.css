@@ -4,7 +4,8 @@
     padding: 20px;
     background-color: #F17300;
     box-shadow: 0px 0px 4px 2px rgba(128, 128, 128, 0.562);
-    height: 9vh;
+    min-height: 50px;
+    height: 68px;
 }
 
 .nav-principal-container a {

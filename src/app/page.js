@@ -30,7 +30,7 @@ export default function LoginPage() {
 
     // Limpiar el listener cuando el componente se desmonta
     return () => unsubscribe();
-  }, [auth]);
+  }, [auth, setRecargar, setRecargarPedidos, setRecargarMesas]);
 
   return (
     <>

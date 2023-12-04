@@ -1,8 +1,11 @@
 "use client";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+
+import AuthContext from "./AuthProvider";
 
 //modulos de Firebase
 import firebaseApp from "@/firebase";
+
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 const db = getFirestore(firebaseApp);
@@ -22,12 +25,17 @@ export const SalonProvider = ({ children }) => {
   //muestra el confirm
   const [confirm, setConfirm] = useState(false);
 
+  const { user } = useContext(AuthContext);
+
   const auth = getAuth(firebaseApp);
 
   //leer data de Firebase
   useEffect(() => {
-    onAuthStateChanged(auth, async (usuarioFirebase) => {
-      if (usuarioFirebase) {
+    
+    
+    if (user) {
+      
+      const fetchData = async () => {
         try {
           const querySnapshot = await getDocs(collection(db, "mesas"));
           const docs = [];
@@ -35,15 +43,18 @@ export const SalonProvider = ({ children }) => {
             docs.push({ ...doc.data(), id: doc.id });
           });
           setMesas(docs);
+          console.log("fetch desde Salon");
           // setIsLoading(false);
         } catch (error) {
-          console.log(error);
+          console.error("Error fetching data:", error);
         }
-      }
-    });
+      };
+
+      fetchData();
+    }
 
     setRecargarMesas(false);
-  }, [recargarMesas]);
+  }, [recargarMesas, user]);
 
   return (
     <SalonContext.Provider

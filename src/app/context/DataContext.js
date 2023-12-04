@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 import AuthContext from "./AuthProvider";
 
@@ -22,11 +22,6 @@ const db = getFirestore(firebaseApp);
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-// const dataURL = "http://localhost:5000/productos";
-
-//url api externa
-const expressURL = "http://localhost:8080/v1/productsList";
-
 export const DataContext = createContext();
 
 const itemsPerPage = 15;
@@ -46,7 +41,7 @@ export const DataContextProvider = ({ children }) => {
   const [visibleSelected, setVisibleSelected] = useState(false);
   //Muestra u oculta el formulario de creación de producto
   const [showForm, setShowForm] = useState(false);
-//Muestra el formulario de New User
+  //Muestra el formulario de New User
   const [visibleNewUser, setVisibleNewUser] = useState(false);
   //guarda el producto a editar
   const [update, setUpdate] = useState(null);
@@ -58,6 +53,8 @@ export const DataContextProvider = ({ children }) => {
   });
 
   const auth = getAuth(firebaseApp);
+
+  const { user } = useContext(AuthContext);
 
   //Agregar producto en Firebase
   const crearProducto = async (product) => {
@@ -96,8 +93,8 @@ export const DataContextProvider = ({ children }) => {
 
   //leer data de Firebase
   useEffect(() => {
-    onAuthStateChanged(auth, async (usuarioFirebase) => {
-      if (usuarioFirebase) {
+    if (user) {
+      const fetchData = async () => {
         try {
           const querySnapshot = await getDocs(collection(db, "productos"));
           const docs = [];
@@ -106,14 +103,16 @@ export const DataContextProvider = ({ children }) => {
           });
           setData(docs);
           setIsLoading(false);
+          console.log("fetch desde data");
         } catch (error) {
           console.log(error);
         }
-      }
-    });
+      };
+      fetchData();
+    }
 
     setRecargar(false);
-  }, [recargar]);
+  }, [recargar, user]);
 
   return (
     <DataContext.Provider
@@ -140,7 +139,7 @@ export const DataContextProvider = ({ children }) => {
         setRecargar,
         setIsLoading,
         visibleNewUser,
-        setVisibleNewUser
+        setVisibleNewUser,
       }}
     >
       {children}

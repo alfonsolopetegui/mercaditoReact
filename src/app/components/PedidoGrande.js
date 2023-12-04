@@ -82,7 +82,9 @@ const PedidoGrande = () => {
   };
 
   const handleCerrarMesa = () => {
-    setConfirm(true);
+    if (efectivo <= totalSum) {
+      setConfirm(true);
+    }
   };
 
   //Borrar mesa y agregarla a archivo
@@ -141,53 +143,48 @@ const PedidoGrande = () => {
             />
           </div>
           <h3>Pedido N°: {numeroPedido}</h3>
-         
+
           <h5>
             inicio: {fechaDeCreacion} {horaDeCreacion}
           </h5>
           <h5>Cliente: {nombreCliente}</h5>
           <h5>Dirección: {direccion}</h5>
         </div>
-        <table>
-          <tbody className={styles["mesa-grande-contenido"]}>
-            <tr>
-              <th>Item</th>
-              {/* <th>Cant.</th> */}
-              <th>Cantidad</th>
-              <th>Precio unit.</th>
-              <th>Total</th>
-            </tr>
-            {contenido &&
-              contenido.map((item, i) => {
-                return (
-                  <tr key={i}>
-                    <td style={{ fontSize: "24px" }}>{item.nombre}</td>
-                    {/* <td style={{ fontSize: "24px" }}>x{item.cantidad}</td> */}
-                    <td style={{ fontSize: "24px" }}>
-                      <CounterPedidos
-                        dataPedido={pedidoSeleccionado}
-                        key={i}
-                        dataItem={item}
-                      />
-                    </td>
-                    <td style={{ fontSize: "24px" }}>${item.precio}</td>
-                    <td style={{ fontSize: "24px" }}>
-                      ${item.precio * item.cantidad}
-                    </td>
-                  </tr>
-                );
-              })}
-            <tr></tr>
-            <tr>
-              <td colSpan={3} style={{ fontSize: "24px" }}>
-                <b>Total</b>
-              </td>
-              <td style={{ fontSize: "24px" }}>
-                <b>${totalSum}</b>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className={styles["mesa-grande-contenedor"]}>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Cantidad</th>
+                <th>Precio unit.</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contenido &&
+                contenido.map((item, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{item.nombre}</td>
+
+                      <td>
+                        <CounterPedidos
+                          dataPedido={pedidoSeleccionado}
+                          key={i}
+                          dataItem={item}
+                        />
+                      </td>
+                      <td>${item.precio}</td>
+                      <td>${item.precio * item.cantidad}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+        <div className={styles["mesa-grande-total"]}>
+          <p>Total: ${totalSum.toFixed(2)}</p>
+        </div>
         <div className={styles["btn-container"]}>
           <button onClick={handleMenu} className={styles["close-btn"]}>
             <h4>Menú </h4>
@@ -233,7 +230,7 @@ const PedidoGrande = () => {
               <input
                 type="text"
                 id="tarjeta"
-                value={(totalSum - efectivo).toFixed(2)}
+                value={isNaN(efectivo) ? 0 : (totalSum - efectivo).toFixed(2)}
                 readOnly
               />
             </label>
@@ -241,6 +238,11 @@ const PedidoGrande = () => {
           <h3 className={styles["cerrar-mesa-total"]}>
             Total: ${totalSum.toFixed(2)}
           </h3>
+          {efectivo > totalSum && (
+            <h5 style={{ color: "red" }}>
+              el pago en efectivo no puede ser mayor al total
+            </h5>
+          )}
           <div className={styles["cerrar-mesa-btn-container"]}>
             <button onClick={handlePrint}>Imprimir</button>
             <button onClick={handleCerrarMesa}>Cerrar</button>

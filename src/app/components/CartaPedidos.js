@@ -65,6 +65,7 @@ const CartaPedidos = ({ datosPedido }) => {
           // setMesas(updatedMesas);
           setPedidoSeleccionado(updatedPedido);
           setRecargar(true);
+          console.log('recarga mesas desde Carta Pedidos')
         } catch (error) {
           console.error(
             "Error al actualizar el pedido en la base de datos",
