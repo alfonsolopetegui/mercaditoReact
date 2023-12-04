@@ -4,6 +4,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 //modulos de Firebase
 import firebaseApp from "@/firebase";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
+import AuthContext from "./AuthProvider";
 
 const db = getFirestore(firebaseApp);
 
@@ -21,12 +22,14 @@ const DeliveryProvider = ({ children }) => {
   const [openPedidoGrande, setOpenPedidoGrande] = useState(false);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(false);
 
+  const { user } = useContext(AuthContext);
+
   const auth = getAuth(firebaseApp);
 
   //leer data de Firebase
   useEffect(() => {
-    onAuthStateChanged(auth, async (usuarioFirebase) => {
-      if (usuarioFirebase) {
+    if (user) {
+      const fetchData = async () => {
         try {
           const querySnapshot = await getDocs(collection(db, "pedidos"));
           const docs = [];
@@ -34,14 +37,16 @@ const DeliveryProvider = ({ children }) => {
             docs.push({ ...doc.data(), id: doc.id });
           });
           setPedidos(docs);
+          console.log("fetch desde pedidos");
         } catch (error) {
           console.log(error);
         }
-      }
-    });
+      };
+      fetchData();
+    }
 
     setRecargarPedidos(false);
-  }, [RecargarPedidos]);
+  }, [RecargarPedidos, user]);
 
   return (
     <DeliveryContext.Provider

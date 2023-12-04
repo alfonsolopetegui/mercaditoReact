@@ -30,6 +30,8 @@
   background-color: #dbe4ee;
   min-height: 50px;
   padding: 5px;
+  max-height: 80px;
+  overflow-y:auto;
 }
 
 .mesa-contenido article {
@@ -58,6 +60,5 @@
   position: absolute;
   top: 0;
   left: 154px;
-
-  z-index: 10;
+  z-index: 1;
 }

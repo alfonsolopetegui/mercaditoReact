@@ -6,7 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth"; // Importa la funciÃ
 
 
 
-const login = ({auth}) => {
+const Login = ({auth}) => {
 
   const correoRef = useRef();
   // const errRef = useRef();
@@ -65,4 +65,4 @@ const login = ({auth}) => {
   );
 };
 
-export default login;
+export default Login;
