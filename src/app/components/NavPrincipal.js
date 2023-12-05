@@ -35,40 +35,31 @@ const NavPrincipal = () => {
     router.push("/");
   };
 
-  const handleLinkClick = (e, pathname) => {
-    e.preventDefault();
-    push(pathname);
-    setPaginaActiva(pathname);
-  };
-
   return (
     <>
       {user ? (
         <div className={styles["nav-principal-container"]}>
           <div className={styles["nav-principal-items"]}>
-            <Link href={"/Salon"}>
-              <h4
-                className={paginaActiva === "/Salon" ? styles.active : ""}
-                onClick={(e) => handleLinkClick(e, "/Salon")}
-              >
-                Salon
-              </h4>
+            <Link
+              href={"/Salon"}
+              // className={paginaActiva === "/Salon" ? styles.active : ""}
+              // onClick={() => setPaginaActiva("Salon")}
+            >
+              Salon
             </Link>
-            <Link href={"/Delivery"}>
-              <h4
-                className={paginaActiva === "/Delivery" ? styles.active : ""}
-                onClick={(e) => handleLinkClick(e, "/Delivery")}
-              >
-                Delivery
-              </h4>
+            <Link
+              href={"/Delivery"}
+              // className={paginaActiva === "/Delivery" ? styles.active : ""}
+              // onClick={() => setPaginaActiva("Delivery")}
+            >
+              Delivery
             </Link>
-            <Link href={"/Home"}>
-              <h4
-                className={paginaActiva === "/Home" ? styles.active : ""}
-                onClick={(e) => handleLinkClick(e, "/Home")}
-              >
-                Administrador
-              </h4>
+            <Link
+              href={"/Home"}
+              // className={paginaActiva === "/Home" ? styles.active : ""}
+              // onClick={() => setPaginaActiva("Home")}
+            >
+              Administrador
             </Link>
           </div>
           {user ? (
