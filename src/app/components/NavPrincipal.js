@@ -42,22 +42,22 @@ const NavPrincipal = () => {
           <div className={styles["nav-principal-items"]}>
             <Link
               href={"/Salon"}
-              // className={paginaActiva === "/Salon" ? styles.active : ""}
-              // onClick={() => setPaginaActiva("Salon")}
+              className={paginaActiva === "/Salon" ? styles.active : ""}
+              onClick={() => setPaginaActiva("Salon")}
             >
               Salon
             </Link>
             <Link
               href={"/Delivery"}
-              // className={paginaActiva === "/Delivery" ? styles.active : ""}
-              // onClick={() => setPaginaActiva("Delivery")}
+              className={paginaActiva === "/Delivery" ? styles.active : ""}
+              onClick={() => setPaginaActiva("Delivery")}
             >
               Delivery
             </Link>
             <Link
               href={"/Home"}
-              // className={paginaActiva === "/Home" ? styles.active : ""}
-              // onClick={() => setPaginaActiva("Home")}
+              className={paginaActiva === "/Home" ? styles.active : ""}
+              onClick={() => setPaginaActiva("Home")}
             >
               Administrador
             </Link>
