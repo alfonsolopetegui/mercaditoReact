@@ -49,6 +49,9 @@ const Pedido = ({ data }) => {
     setRecargarPedidos,
     setOpenPedidoGrande,
     setPedidoSeleccionado,
+    cartasAbiertasPedidos,
+    setCartasAbiertasPedidos,
+    cerrarCartaPedidos,
   } = useContext(DeliveryContext);
 
   // Calculate the total sum of "Total" values in the contenido array
@@ -62,8 +65,15 @@ const Pedido = ({ data }) => {
   };
 
   const handleMenu = () => {
-    setVerCarta(!verCarta);
+    setCartasAbiertasPedidos((prevCartasAbiertasPedidos) => ({
+      ...prevCartasAbiertasPedidos,
+      [data.numeroPedido]: !prevCartasAbiertasPedidos[data.numeroPedido],
+    }));
   };
+
+  const handleCerrarCarta = () => {
+    cerrarCarta(data.numeroPedido);
+  }; 
 
   const handleSelect = async (e) => {
     const newStatus = e.target.value;
@@ -212,10 +222,10 @@ const Pedido = ({ data }) => {
       </div>
 
       <div className={styles["carta-wrapper"]}>
-        {verCarta && <CartaPedidos datosPedido={data} />}
+        {cartasAbiertasPedidos[data.numeroPedido] && (
+          <CartaPedidos datosPedido={data} />
+        )}
       </div>
-
-      
     </div>
   );
 };

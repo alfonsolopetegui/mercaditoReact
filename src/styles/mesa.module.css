@@ -1,5 +1,5 @@
 .mesa-wrapper {
-  position: relative;
+  /* position: relative; */
 }
 
 .mesa {
@@ -58,7 +58,9 @@
 
 .carta-wrapper {
   position: absolute;
-  top: 0;
-  left: 154px;
+  width: 1vw;
+  height: 1vh;
+  top: 30%;
+  left: 45%;
   z-index: 1;
 }

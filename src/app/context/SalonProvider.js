@@ -25,16 +25,17 @@ export const SalonProvider = ({ children }) => {
   //muestra el confirm
   const [confirm, setConfirm] = useState(false);
 
+
+   // Estado para la carta abierta en cada mesa
+   const [cartasAbiertas, setCartasAbiertas] = useState({});
+
   const { user } = useContext(AuthContext);
 
   const auth = getAuth(firebaseApp);
 
   //leer data de Firebase
   useEffect(() => {
-    
-    
     if (user) {
-      
       const fetchData = async () => {
         try {
           const querySnapshot = await getDocs(collection(db, "mesas"));
@@ -56,6 +57,10 @@ export const SalonProvider = ({ children }) => {
     setRecargarMesas(false);
   }, [recargarMesas, user]);
 
+  const cerrarCarta = () => {
+    setCartasAbiertas({})
+  }
+
   return (
     <SalonContext.Provider
       value={{
@@ -69,6 +74,10 @@ export const SalonProvider = ({ children }) => {
         setOpenMesaGrande,
         setRecargarMesas,
         setConfirm,
+        cartasAbiertas,
+        setCartasAbiertas,
+        cerrarCarta
+
       }}
     >
       {children}

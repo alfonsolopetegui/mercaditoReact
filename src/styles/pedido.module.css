@@ -1,9 +1,9 @@
-.pedido-container {
+/* .pedido-container {
   position: relative;
-}
+} */
 
 .pedido-wrapper {
-  position: relative;
+  /* position: relative; */
   min-width: 350px;
   max-width: fit-content;
   border: solid 2px black;
@@ -131,12 +131,13 @@
   font-size: 16px;
   padding-left: 2px;
 }
-
+/* 
 .carta-wrapper {
   position: absolute;
+  top: 0;
   z-index: 1;
   top: 48px;
-}
+} */
 
 .datos-cliente {
   display: flex;

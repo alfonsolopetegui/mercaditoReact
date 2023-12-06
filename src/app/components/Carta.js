@@ -7,12 +7,28 @@ import firebaseApp from "@/firebase";
 import { doc, setDoc, getFirestore } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
+//Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRectangleXmark } from "@fortawesome/free-regular-svg-icons";
+
 const Carta = ({ datosMesa }) => {
-  const { mesas, setMesas, setMesaSeleccionada, setRecargarMesas } =
-    useContext(SalonContext);
+  const {
+    mesas,
+    setMesas,
+    setMesaSeleccionada,
+    setRecargarMesas,
+    setCartasAbiertas,
+    cartasAbiertas,
+    cerrarCarta,
+  } = useContext(SalonContext);
+
   const { data, setRecargar } = useContext(DataContext);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [subMenu, setSubMenu] = useState(false);
+
+  const categoriasUnicas = [
+    ...new Set(data.map((producto) => producto.categoria)),
+  ];
 
   const handleMenu = (e, categoria) => {
     setCategoriaSeleccionada(categoria);
@@ -56,7 +72,7 @@ const Carta = ({ datosMesa }) => {
           setMesaSeleccionada(updatedMesa);
           setRecargarMesas(true);
           setRecargar(true);
-          console.log('recarga mesas desde Carta')
+          console.log("recarga mesas desde Carta");
         } catch (error) {
           console.error(
             "Error al actualizar la mesa en la base de datos",
@@ -79,7 +95,7 @@ const Carta = ({ datosMesa }) => {
           setMesaSeleccionada({ ...mesaAModificar });
           setRecargarMesas(true);
           setRecargar(true);
-          console.log('recarga mesas desde Carta')
+          console.log("recarga mesas desde Carta");
         } catch (error) {
           console.error(
             "Error al actualizar la mesa en la base de datos",
@@ -90,68 +106,37 @@ const Carta = ({ datosMesa }) => {
     }
   };
 
+  const handleCerrarCarta = () => {
+    cerrarCarta(datosMesa.numeroMesa);
+  };
+
   return (
     <div className={styles["carta-wrapper"]}>
       <div className={styles["carta-container"]}>
-        <article
-          className={`${styles["carta-btn"]} ${
-            categoriaSeleccionada === "Pizzas" ? styles["selected"] : ""
-          }`}
-          onClick={(e) => handleMenu(e, "Pizzas")}
-          style={{ cursor: "pointer" }}
-        >
-          <h3>Pizzas</h3>
-        </article>
+        <div className={styles["carta-header"]}>
+          <h5>Mesa {datosMesa.numeroMesa}</h5>
+          <FontAwesomeIcon
+            className={styles["close-btn"]}
+            onClick={handleCerrarCarta}
+            icon={faRectangleXmark}
+          />
+        </div>
 
-        <article
-          className={`${styles["carta-btn"]} ${
-            categoriaSeleccionada === "Empanadas" ? styles["selected"] : ""
-          }`}
-          onClick={(e) => handleMenu(e, "Empanadas")}
-          style={{ cursor: "pointer" }}
-        >
-          <h3>Empanadas</h3>
-        </article>
-
-        <article
-          className={`${styles["carta-btn"]} ${
-            categoriaSeleccionada === "Sandwiches" ? styles["selected"] : ""
-          }`}
-          onClick={(e) => handleMenu(e, "Sandwiches")}
-          style={{ cursor: "pointer" }}
-        >
-          <h3>Sandwiches</h3>
-        </article>
-
-        <article
-          className={`${styles["carta-btn"]} ${
-            categoriaSeleccionada === "Papas" ? styles["selected"] : ""
-          }`}
-          onClick={(e) => handleMenu(e, "Papas")}
-          style={{ cursor: "pointer" }}
-        >
-          <h3>Papas</h3>
-        </article>
-
-        <article
-          className={`${styles["carta-btn"]} ${
-            categoriaSeleccionada === "Postres" ? styles["selected"] : ""
-          }`}
-          onClick={(e) => handleMenu(e, "Postres")}
-          style={{ cursor: "pointer" }}
-        >
-          <h3>Postres</h3>
-        </article>
-
-        <article
-          className={`${styles["carta-btn"]} ${
-            categoriaSeleccionada === "Bebidas" ? styles["selected"] : ""
-          }`}
-          onClick={(e) => handleMenu(e, "Bebidas")}
-          style={{ cursor: "pointer" }}
-        >
-          <h3>Bebidas</h3>
-        </article>
+        {categoriasUnicas &&
+          categoriasUnicas.map((categoria, i) => {
+            return (
+              <article
+                key={i}
+                className={`${styles["carta-btn"]} ${
+                  categoriaSeleccionada === categoria ? styles["selected"] : ""
+                }`}
+                onClick={(e) => handleMenu(e, categoria)}
+                style={{ cursor: "pointer" }}
+              >
+                <h3>{categoria}</h3>
+              </article>
+            );
+          })}
       </div>
       {subMenu && (
         <div className={styles["single-item-container"]}>

@@ -1,12 +1,15 @@
 .menu-single-item {
   width:max-content;
     /* border: solid 1px black; */
-    height: 25px;
+    height: 30px;
+    padding: 0 5px;
     border-radius: 5px;
     box-shadow: 2px 2px 5px 0px gray;
     cursor: pointer;
-    padding: 3px;
+    /* padding: 3px; */
     text-align: center;
     background-color: #F18F01;
     color: white;
+    display: flex;
+    align-items: center;
   }

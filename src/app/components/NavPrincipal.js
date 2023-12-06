@@ -40,26 +40,29 @@ const NavPrincipal = () => {
       {user ? (
         <div className={styles["nav-principal-container"]}>
           <div className={styles["nav-principal-items"]}>
-            <Link
-              href={"/Salon"}
-              className={paginaActiva === "/Salon" ? styles.active : ""}
-              onClick={() => setPaginaActiva("Salon")}
-            >
-              Salon
+            <Link legacyBehavior href={"/Salon"}>
+              <a
+                className={paginaActiva === "/Salon" ? styles.active : ""}
+                onClick={() => setPaginaActiva("Salon")}
+              >
+                Salón
+              </a>
             </Link>
-            <Link
-              href={"/Delivery"}
-              className={paginaActiva === "/Delivery" ? styles.active : ""}
-              onClick={() => setPaginaActiva("Delivery")}
-            >
-              Delivery
+            <Link legacyBehavior href={"/Delivery"}>
+              <a
+                className={paginaActiva === "/Delivery" ? styles.active : ""}
+                onClick={() => setPaginaActiva("Delivery")}
+              >
+                Delivery
+              </a>
             </Link>
-            <Link
-              href={"/Home"}
-              className={paginaActiva === "/Home" ? styles.active : ""}
-              onClick={() => setPaginaActiva("Home")}
-            >
-              Administrador
+            <Link legacyBehavior href={"/Home"}>
+              <a
+                className={paginaActiva === "/Home" ? styles.active : ""}
+                onClick={() => setPaginaActiva("Home")}
+              >
+                Administrador
+              </a>
             </Link>
           </div>
           {user ? (

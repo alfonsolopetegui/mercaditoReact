@@ -34,6 +34,9 @@ const MesaGrande = () => {
     OpenMesaGrande,
     setOpenMesaGrande,
     setRecargarMesas,
+    cartasAbiertas,
+    setCartasAbiertas,
+    cerrarCarta
   } = useContext(SalonContext);
 
   //Visualizar la carta
@@ -67,7 +70,10 @@ const MesaGrande = () => {
 
   //Abre la carta
   const handleMenu = () => {
-    setOpen(!open);
+    setCartasAbiertas((prevCartasAbiertas) => ({
+      ...prevCartasAbiertas,
+      [numeroMesa]: !prevCartasAbiertas[numeroMesa],
+    }));
   };
 
   //Cierra la mesa
@@ -81,7 +87,9 @@ const MesaGrande = () => {
   };
 
   const handleCerrarMesa = () => {
-    setConfirm(true);
+    if (efectivo <= totalSum) {
+      setConfirm(true);
+    }
   };
 
   //Borrar mesa y agregarla a archivo
@@ -224,7 +232,7 @@ const MesaGrande = () => {
               <input
                 type="text"
                 id="tarjeta"
-                value={(totalSum - efectivo).toFixed(2)}
+                value={isNaN(efectivo) ? 0 : (totalSum - efectivo).toFixed(2)}
                 readOnly
               />
             </label>
@@ -232,6 +240,11 @@ const MesaGrande = () => {
           <h3 className={styles["cerrar-mesa-total"]}>
             Total: ${totalSum.toFixed(2)}
           </h3>
+          {efectivo > totalSum && (
+            <h5 style={{ color: "red" }}>
+              el pago en efectivo no puede ser mayor al total
+            </h5>
+          )}
           <div className={styles["cerrar-mesa-btn-container"]}>
             <button onClick={handlePrint}>Imprimir</button>
             <button onClick={handleCerrarMesa}>Cerrar</button>

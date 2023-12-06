@@ -34,6 +34,9 @@ const PedidoGrande = () => {
     OpenPedidoGrande,
     setOpenPedidoGrande,
     setRecargarPedidos,
+    cartasAbiertasPedidos,
+    setCartasAbiertasPedidos,
+    cerrarCartaPedidos,
   } = useContext(DeliveryContext);
 
   //Visualizar la carta
@@ -66,9 +69,12 @@ const PedidoGrande = () => {
     0
   );
 
-  //Abre la carta
-  const handleMenu = () => {
-    setOpen(!open);
+   //Abre la carta
+   const handleMenu = () => {
+    setCartasAbiertasPedidos((prevCartasAbiertasPedidos) => ({
+      ...prevCartasAbiertasPedidos,
+      [numeroPedido]: !prevCartasAbiertasPedidos[numeroPedido],
+    }));
   };
 
   //Cierra la mesa

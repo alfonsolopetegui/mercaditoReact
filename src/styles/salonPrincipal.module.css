@@ -1,5 +1,5 @@
 .salon-mesas {
-   width: 1120px;
+   width: fit-content;
     margin: 10px;
     padding: 1px;
     display: flex;

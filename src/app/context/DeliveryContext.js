@@ -22,6 +22,9 @@ const DeliveryProvider = ({ children }) => {
   const [openPedidoGrande, setOpenPedidoGrande] = useState(false);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(false);
 
+  // Estado para la carta abierta en cada mesa
+  const [cartasAbiertasPedidos, setCartasAbiertasPedidos] = useState({});
+
   const { user } = useContext(AuthContext);
 
   const auth = getAuth(firebaseApp);
@@ -48,6 +51,10 @@ const DeliveryProvider = ({ children }) => {
     setRecargarPedidos(false);
   }, [RecargarPedidos, user]);
 
+  const cerrarCartaPedidos = () => {
+    setCartasAbiertasPedidos({});
+  };
+
   return (
     <DeliveryContext.Provider
       value={{
@@ -58,6 +65,9 @@ const DeliveryProvider = ({ children }) => {
         setOpenPedidoGrande,
         pedidoSeleccionado,
         setPedidoSeleccionado,
+        cartasAbiertasPedidos,
+        setCartasAbiertasPedidos,
+        cerrarCartaPedidos,
       }}
     >
       {children}

@@ -63,7 +63,7 @@
 
 .mesa-grande-menu {
   width: fit-content;
-  padding: 10px;
+  /* padding: 10px; */
   border-radius: 10px;
   margin-top: 15px;
   background-color: white;

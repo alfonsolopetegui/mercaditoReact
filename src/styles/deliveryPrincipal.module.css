@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 60vh;
+  height: 90vh;
 }
 
 .pedido-grande-container {

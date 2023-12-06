@@ -13,19 +13,13 @@ const SalonPrincipal = () => {
   const mesasOrdenadas = [...mesas].sort((a, b) => a.numeroMesa - b.numeroMesa);
   
 
-  const closeHandler = (mesa) => {
-    // const borrarMesas = mesas.filter((el) => el.numeroMesa !== mesa.numeroMesa);
-    // setMesas(borrarMesas);
-  };
-
-  // console.log(mesas)
   return (
     <>
       {mesasOrdenadas.length > 0 ? (
         <div className={styles["salon-mesas"]}>
           {mesasOrdenadas.map((mesa, i) => {
             return (
-              <Mesa key={i} data={mesa} handler={() => closeHandler(mesa)} />
+              <Mesa key={i} data={mesa}/>
             );
           })}
         </div>
