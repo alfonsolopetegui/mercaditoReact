@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import DataContext, { DataContextProvider } from "./context/DataContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
