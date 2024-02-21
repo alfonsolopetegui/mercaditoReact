@@ -156,7 +156,7 @@ const PedidoGrande = () => {
           <h5>Cliente: {nombreCliente}</h5>
           <h5>Dirección: {direccion}</h5>
         </div>
-        <div className={styles["mesa-grande-contenedor"]}>
+        <div className={styles["mesa-grande-contenido"]}>
           <table>
             <thead>
               <tr>
@@ -192,21 +192,13 @@ const PedidoGrande = () => {
           <p>Total: ${totalSum.toFixed(2)}</p>
         </div>
         <div className={styles["btn-container"]}>
-          <button onClick={handleMenu} className={styles["close-btn"]}>
+          <button onClick={handleMenu} className={styles["menu-btn"]}>
             <h4>Menú </h4>
-            {open ? (
-              <FontAwesomeIcon icon={faChevronUp} />
-            ) : (
-              <FontAwesomeIcon icon={faChevronDown} />
-            )}
+            
           </button>
-          <button onClick={handleCash} className={styles["close-btn"]}>
-            <h4>Cobrar y cerrar</h4>
-            {cerrarPedido ? (
-              <FontAwesomeIcon icon={faChevronUp} />
-            ) : (
-              <FontAwesomeIcon icon={faChevronDown} />
-            )}
+          <button onClick={handleCash} className={styles["cobrar-cerrar-btn"]}>
+            <h4>{cerrarPedido ? 'Cancelar ':'Cobrar pedido'}</h4>
+         
           </button>
         </div>
       </div>

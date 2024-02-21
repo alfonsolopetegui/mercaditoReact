@@ -3,21 +3,31 @@
   border-radius: 15px;
   width: 600px;
   /* min-height: 400px; */
+  box-shadow: 0 0 5px 2px #45bdff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: whitesmoke;
+  background-color: none;
   padding: 15px;
 }
 .mesa-grande-header {
   padding-bottom: 25px;
+  color: whitesmoke;
+}
+.numero-mesa {
+  font-size: 24px;
+}
+.mesa-grande-header h4 {
+  color: rgba(255, 255, 255, 0.484);
+  font-size: 12px;
 }
 
-.mesa-grande-contenido  {
+.mesa-grande-contenido {
   width: 100%;
-  background-color: #dbe4ee;
- max-height: 200px;
- overflow-y: auto;
+  background-color: none;
+  color: whitesmoke;
+  max-height: 200px;
+  overflow-y: auto;
 }
 .mesa-grande-contenido th {
   text-align: left;
@@ -30,23 +40,38 @@
 
 .btn-container {
   display: flex;
+  gap: 10px;
   margin-top: 25px;
 }
 
-.btn-container button {
+.menu-btn {
+  background: none;
+  border: solid 2px #749c75;
+  color: whitesmoke;
+  padding: 5px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  padding: 3px 10px;
-  margin-top: 5px;
-  background-color: #3e7cb1;
-  color: white;
-  font-weight: 600;
-  border: none;
-  margin-right: 20px;
+  transition: ease 0.3s all;
 }
 
-.btn-container button:nth-child(even) {
-  background-color: #f56960;
+.cobrar-cerrar-btn {
+  background: none;
+  border: solid 2px #749c75;
+  color: whitesmoke;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: ease 0.3s all;
 }
+
+.menu-btn:hover {
+  background-color: #749c75;
+}
+
+.cobrar-cerrar-btn:hover {
+  background-color: #749c75;
+}
+
 .close-btn-container {
   width: 100%;
   display: flex;
@@ -57,8 +82,14 @@
   display: flex;
   gap: 5px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 25px;
+  color: rgba(241, 232, 232, 0.541);
   /* color: rgba(0, 0, 0, 0.537); */
+  transition: all ease 0.3s;
+}
+
+.close-btn:hover {
+  color: whitesmoke;
 }
 
 .mesa-grande-menu {
@@ -73,27 +104,47 @@
 
 .cerrar-mesa-container {
   width: 100%;
-  background-color: whitesmoke;
+  background-color: none;
+  box-shadow: 0 0 5px 2px gray;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  gap: 10px;
+  margin-top: 10px;
   align-items: center;
   padding: 10px 0;
-}
-.cerrar-mesa-btn-container button {
-  cursor: pointer;
-  padding: 3px 10px;
-  margin-top: 5px;
-  background-color: #3e7cb1;
-  color: white;
-  font-weight: 600;
-  border: none;
-  margin-right: 20px;
+  color: whitesmoke;
 }
 
+.cerrar-mesa-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.cerrar-mesa-btn-container button {
+  background: none;
+  border: solid 2px #749c75;
+  color: whitesmoke;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: ease 0.3s all;
+}
+
+.cerrar-mesa-btn-container button:hover {
+  background-color: #749c75;
+}
+.cerrar-mesa-btn-container button:nth-child(even):hover {
+  background-color: #749c75;
+}
 .cerrar-mesa-btn-container button:nth-child(even) {
-  background-color: #f56960;
+  background: none;
+  border: solid 2px #749c75;
+  color: whitesmoke;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: ease 0.3s all;
 }
 
 .cerrar-mesa-total {
@@ -108,11 +159,14 @@
 
 .input-container label {
   margin-right: 5px;
+  margin-right: 10px;
 }
 
 .input-container input {
   font-size: 16px;
-  padding-left: 2px;
+ padding: 3px;
+ background: none;
+ color: whitesmoke;
 }
 
 @media print {
@@ -139,12 +193,15 @@
 
 .mesa-grande th {
   position: sticky;
+  color: white;
   top: 0;
-  background-color: #f2f2f2;
+  background-color: rgba(0, 0, 0, 0.466);
 }
 
 .mesa-grande-total {
   padding: 8px; /* Ajusta según sea necesario */
   text-align: right;
-  background-color: #f2f2f2;
+  color: white;
+
+  background-color: rgba(0, 0, 0, 0.466);
 }

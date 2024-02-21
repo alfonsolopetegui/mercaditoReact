@@ -90,7 +90,7 @@ const DeliveryNav = () => {
         <div className={styles["mesa-form-container"]}>
           <div className={styles["mesa-form"]}>
             <div className={styles["close-btn-container"]}>
-              <FontAwesomeIcon
+            <FontAwesomeIcon
                 className={styles["close-btn"]}
                 onClick={closeForm}
                 icon={faRectangleXmark}

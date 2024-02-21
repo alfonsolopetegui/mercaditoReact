@@ -14,7 +14,10 @@
 
 body {
   overflow-x: hidden;
-  background-color: whitesmoke;
+  background-image: url(../../public/restoback.jpg);
+  background-position: center;
+  background-size: cover;
+  background-position-y: top;
 }
 
 a {

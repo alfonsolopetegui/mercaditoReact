@@ -4,12 +4,18 @@
     height: 30px;
     padding: 0 5px;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px 0px gray;
+    /* box-shadow: 2px 2px 5px 0px gray; */
     cursor: pointer;
     /* padding: 3px; */
     text-align: center;
-    background-color: #F18F01;
+    background-color: #23acf6;
     color: white;
     display: flex;
     align-items: center;
+    margin-left: 10px;
+    transition: all .3s ease;
+  }
+
+  .menu-single-item:hover {
+    background-color: #45bdff;
   }

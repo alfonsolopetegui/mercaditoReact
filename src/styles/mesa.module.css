@@ -3,7 +3,7 @@
 }
 
 .mesa {
-  box-shadow: 0px 2px 5px 2px grey;
+  box-shadow: 0px 2px 5px 2px #45bdff;
   border-radius: 15px;
   padding: 10px;
   width: 150px;
@@ -15,7 +15,20 @@
   color: whitesmoke;
   cursor: pointer;
   padding: 2px 4px;
-  background-color: #3e7cb1;
+  /* border: solid 1px whitesmoke; */
+  padding: 5px 0 5px 10px;
+  border-radius: 5px;
+  border: solid 2px #45bdff;
+  transition: all ease .3s;
+  margin-bottom: 5px;
+  /* box-shadow: 0px 1px 7px 1px rgba(180, 174, 174, 0.712); */
+  background-color: none;
+}
+
+.mesa-title:hover {
+  background-color: #45bdff;
+  color:whitesmoke;
+  box-shadow: 0 0 0 0;
 }
 
 .mesa h6 {
@@ -23,20 +36,27 @@
 }
 
 .nombre-mozo {
-  color: #054b91a1;
+  color: whitesmoke;
+  margin-bottom: 5px;
+  padding-left: 5px;
 }
 
 .mesa-contenido {
-  background-color: #dbe4ee;
+  background-color: #dbe4ee3d;
   min-height: 50px;
   padding: 5px;
   max-height: 80px;
   overflow-y:auto;
+  margin-bottom: 5px;
 }
 
 .mesa-contenido article {
   display: flex;
   justify-content: space-between;
+}
+
+.mesa-contenido h6 {
+  color: whitesmoke;
 }
 
 .mesa-btn-container {
@@ -46,14 +66,21 @@
 
 .mesa-btn {
   cursor: pointer;
-  padding: 3px 10px;
+  padding: 4px 15px;
   margin-top: 5px;
-  background-color: #3e7cb1;
-  color: white;
+  background: none;
+  color: whitesmoke;
   font-weight: 600;
-  border: none;
+  border: solid 3px #749C75;
   display: flex;
   gap: 5px;
+  border-radius: 5px;
+
+}
+
+.mesa-btn:hover {
+  background-color: #749C75;
+  color:whitesmoke;
 }
 
 .carta-wrapper {

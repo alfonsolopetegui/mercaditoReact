@@ -1,3 +1,5 @@
 .delivery-wrapper {
     display: flex;
+    background-color: rgba(0, 0, 0, 0.468);
+    height: 100vh;
 }

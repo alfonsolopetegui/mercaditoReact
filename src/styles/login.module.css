@@ -1,56 +1,64 @@
 .login-container {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    background-color: #5E7CE2;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 5px 1px rgb(188, 181, 181);
-  }
-  
-  .login-container h1 {
-    margin-bottom: 20px;
-    color: whitesmoke;
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .login-form label {
-    margin-bottom: 4px;
-    color: whitesmoke;
-  }
-  .login-form input {
-    border: none;
-    align-self: center;
-    width: 100%;
-    margin-bottom: 10px;
-    height: 30px;
-    border-radius: 10px;
-    background-color: aliceblue;
-    padding-left: 15px;
-    outline: none;
-    
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background: none;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 5px 2px #45bdff;
+}
 
-  }
-  
-  .login-form input:focus {
-  
-   outline:  4px solid #054A91;
+.login-container h1 {
+  margin-bottom: 20px;
+  color: whitesmoke;
+}
 
-  }
-  
-  .login-form button {
-    width: 100%;
-    height: 30px;
-    border: none;
-    border-radius: 10px;
-    background-color: #054A91;
-    margin: 20px 0;
-    color: whitesmoke;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 0 5px 1px whitesmoke;
-  }
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 4px;
+  color: whitesmoke;
+}
+.login-form input {
+  padding: 5px 5px;
+  font-size: 20px;
+  background: #0d82c1a0;
+  color: whitesmoke;
+  outline: solid 2px #17a1ec;
+  border-radius: 5px;
+  border: none;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+
+.login-form input:focus {
+  outline: 4px solid #054a91;
+}
+
+.login-form button {
+  display: flex;
+  align-self: center;
+  width: fit-content;
+  color: white;
+  font-weight: 600;
+  /* width: 100px; */
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background: none;
+  border: solid 2px #45bdff;
+  border-radius: 5px;
+  transition: all ease .3s;
+}
+
+.login-form button:hover {
+  background: #45bdff;
+}
+
+.text-danger {
+  margin-top: 20px;
+  color: red;
+}

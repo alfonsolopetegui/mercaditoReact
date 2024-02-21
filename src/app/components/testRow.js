@@ -34,7 +34,6 @@ export const TestRow = (props) => {
       <td>{product.nombre}</td>
       <td>{product.precioBase}</td>
       <td>{product.precio}</td>
-      <td>{product.cantidad}</td>
       <td>{product.categoria}</td>
       <td>
         <button className={styles["botones"]} onClick={() => handleEdit(product)}>

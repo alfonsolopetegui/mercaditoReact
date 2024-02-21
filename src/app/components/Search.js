@@ -45,7 +45,7 @@ export const Search = () => {
                   onClick={() => handleAuto(v)}
                 >
                   <h4>{v.nombre.toLowerCase()}</h4>
-                  <h4>{v.cantidad.toLowerCase()}</h4>
+                  <h4>{v.precio.toLowerCase()}</h4>
                 </div>
               );
             })}

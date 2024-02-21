@@ -13,12 +13,14 @@
 .confirm-container {
   width: 350px;
   height: 120px;
-  background-color: whitesmoke;
+  background-color: rgba(128, 128, 128, 0.361);
+  box-shadow: 0 0 5px 2px gray;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  color: white;
   /* position: absolute;
   top: 45%;
   left: 30%; */
@@ -35,14 +37,15 @@
 }
 
 .btn-container button {
-  padding: 3px 5px;
-  border: none;
-  background-color: #f56960;
-  color: white;
-  font-weight: 600;
+  background: none;
+  border: solid 2px #749c75;
+  color: whitesmoke;
+  padding: 5px 15px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: ease 0.3s all;
 }
 
-.btn-container button:nth-child(even) {
-  background-color: #3e7cb1;
+.btn-container button:hover {
+  background-color: #749c75;
 }

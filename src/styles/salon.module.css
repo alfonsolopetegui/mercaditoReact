@@ -1,13 +1,19 @@
 .salon-principal-container {
     display: flex;
+    /* background-color: rgba(0, 0, 0, 0.331); */
+    background-color: #0000009a;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    padding-top: 8.5vh;
 }
 .prohibited-message {
     display: flex;
     justify-content: space-between;
     background-color: #E70E02;
-    padding: 20px;
     box-shadow: 0 0 2px 2px #F42B03;
-    margin-top: 2px;
+    /* margin-top: 2px; */
 }
 
 .prohibited-message h1 {

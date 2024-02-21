@@ -18,7 +18,6 @@ import { applyActionCode, getAuth } from "firebase/auth";
 import { AuthProvider } from "./context/AuthProvider";
 import { DeliveryProvider } from "./context/DeliveryContext";
 
-
 library.add(faTwitter, faTrashCan, faFilePen);
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,12 +28,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
-
-  
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+      >
         <AuthProvider>
           <DeliveryProvider>
             <SalonProvider>

@@ -1,12 +1,12 @@
 "use client";
 import { text } from "@fortawesome/fontawesome-svg-core";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SalonContext from "../context/SalonProvider";
 import styles from "../../styles/salonNav.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faRectangleXmark } from "@fortawesome/free-regular-svg-icons";
+import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 
 //modulos de Firebase
 import firebaseApp from "@/firebase";
@@ -24,6 +24,14 @@ const SalonNav = () => {
   const handleAñadirMesa = () => {
     setMesaForm(true);
   };
+
+  useEffect(() => {
+    if (mesaExistente) {
+      setTimeout(() => {
+        setMesaExistente(false);
+      }, 3000);
+    }
+  }, [mesaExistente, setMesaExistente]);
 
   //Agregar producto en Firebase
   const handleCrearMesa = async (e) => {
@@ -80,6 +88,9 @@ const SalonNav = () => {
 
   const closeForm = () => {
     setMesaForm(false);
+    if(mesaExistente){
+      setMesaExistente(false);
+    }
   };
 
   return (
@@ -129,7 +140,9 @@ const SalonNav = () => {
               <div className={styles["mesa-form-btn-container"]}>
                 <button>Aceptar</button>
               </div>
-              {mesaExistente && <h4 className={styles["mesa-existente"]}>Esa mesa ya existe</h4>}
+              {mesaExistente && (
+                <h4 className={styles["mesa-existente"]}>Esa mesa ya existe</h4>
+              )}
             </form>
           </div>
         </div>

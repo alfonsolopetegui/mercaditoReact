@@ -14,26 +14,36 @@
 }
 
 .carta-container {
-  width: 170px;
+  width: 220px;
   display: flex;
   /* flex-wrap: wrap; */
   flex-direction: column;
   gap: 5px;
   height: fit-content;
-  background-color: orange;
-  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.632);
+  box-shadow: 0 0 5px 2px #45bdff;
+  padding: 20px;
   border-radius: 15px;
 }
 
 .carta-header {
   display: flex;
+  margin-bottom: 10px;
   justify-content: space-between;
   padding-bottom: 5px;
   color: whitesmoke;
+  font-size: 20px;
 }
 
 .close-btn {
   cursor: pointer;
+  color: rgba(245, 245, 245, 0.438);
+  transition: all .3s ease;
+  /* font-size: 20px; */
+}
+
+.close-btn:hover {
+  color: whitesmoke;
 }
 
 .single-item-container {
@@ -48,15 +58,22 @@
   width: 180px;
   height: 35px;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px 0px gray;
+  /* box-shadow: 2px 2px 5px 0px gray; */
   font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: none;
+  color: white;
+  border: solid 2px #ff4560;
+  transition: ease .3s all;
+}
+
+.carta-btn:hover {
+  background-color: #ff4560;
 }
 
 .selected {
-  background-color: #f18f01;
+  background-color: #ff4560;
   color: white;
 }

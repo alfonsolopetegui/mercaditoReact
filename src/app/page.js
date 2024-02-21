@@ -38,13 +38,15 @@ export default function LoginPage() {
         {loading ? (
           <Loader />
         ) : user ? (
-          <div className={styles["titulos"]}>
-            <h1>Barcito</h1>
-            <h4>de la esquina</h4>
-            <h5>Bienvenido {user.email}</h5>
-            <Link href={"/Salon"} className={styles["comenzar-btn"]}>
-              Comenzar
-            </Link>
+          <div className={styles["titulos-wrapper"]}>
+            <div className={styles["titulos"]}>
+              <h1>Barcito</h1>
+              <h4>de la esquina</h4>
+              <h5>Bienvenido {user.email}</h5>
+              <Link href={"/Salon"} className={styles["comenzar-btn"]}>
+                Comenzar
+              </Link>
+            </div>
           </div>
         ) : (
           !loading && (

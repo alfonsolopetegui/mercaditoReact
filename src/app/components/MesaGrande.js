@@ -36,7 +36,7 @@ const MesaGrande = () => {
     setRecargarMesas,
     cartasAbiertas,
     setCartasAbiertas,
-    cerrarCarta
+    cerrarCarta,
   } = useContext(SalonContext);
 
   //Visualizar la carta
@@ -147,13 +147,13 @@ const MesaGrande = () => {
               icon={faRectangleXmark}
             />
           </div>
-          <h3>Mesa N°: {numeroMesa}</h3>
+          <h3 className={styles["numero-mesa"]}>Mesa N°: {numeroMesa}</h3>
           <h4>Mozo: {nombreMozo}</h4>
           <h4>
             inicio: {fechaDeCreacion} {horaDeCreacion}
           </h4>
         </div>
-        <div className={styles["mesa-grande-contenedor"]}>
+        <div className={styles["mesa-grande-contenido"]}>
           <table>
             <thead>
               <tr>
@@ -188,21 +188,11 @@ const MesaGrande = () => {
           <p>Total: ${totalSum.toFixed(2)}</p>
         </div>
         <div className={styles["btn-container"]}>
-          <button onClick={handleMenu} className={styles["close-btn"]}>
+          <button onClick={handleMenu} className={styles["menu-btn"]}>
             <h4>Menú </h4>
-            {open ? (
-              <FontAwesomeIcon icon={faChevronUp} />
-            ) : (
-              <FontAwesomeIcon icon={faChevronDown} />
-            )}
           </button>
-          <button onClick={handleCash} className={styles["close-btn"]}>
-            <h4>Cobrar y cerrar</h4>
-            {cerrarMesa ? (
-              <FontAwesomeIcon icon={faChevronUp} />
-            ) : (
-              <FontAwesomeIcon icon={faChevronDown} />
-            )}
+          <button onClick={handleCash} className={styles["cobrar-cerrar-btn"]}>
+            <h4>{cerrarMesa ? 'Cancelar' :'Cobrar'}</h4>
           </button>
         </div>
       </div>
@@ -247,7 +237,7 @@ const MesaGrande = () => {
           )}
           <div className={styles["cerrar-mesa-btn-container"]}>
             <button onClick={handlePrint}>Imprimir</button>
-            <button onClick={handleCerrarMesa}>Cerrar</button>
+            <button onClick={handleCerrarMesa}>Cerrar mesa</button>
           </div>
         </div>
       )}

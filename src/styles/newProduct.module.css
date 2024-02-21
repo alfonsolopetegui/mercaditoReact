@@ -1,53 +1,74 @@
 .form-new-product {
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    width: 250px;
-    height: max-content;
-    border: none;
-    background-color: #5E7CE2;
-    padding: 10px 15px 15px 15px;
-  }
-  
-  .form-new-product input {
-    height: 23px;
-    font-size: 16px;
-    border: none;
-    /* width: 80%; */
-    outline: none;
-    background: rgb(245, 230, 230);
-    margin-bottom: 3px;
-    padding-left: 3px;
-  }
-  
-  .form-new-product label {
-    font-size: 12px;
-    font-weight: 600;
-    color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-  }
-  .formBtn {
-    cursor: pointer;
-    align-self: center;
-    width: fit-content;
-    padding: 3px 5px;
-    margin-top: 10px;
-    background-color: #F18F01;
-    border: none;
-    color:whitesmoke ;
-    font-weight: 600;
-  }
+  border-radius: 15px;
+  color: whitesmoke;
+  border: none;
+  width: 300px;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  background-color: none;
+  padding: 10px 20px 30px 20px;
+  box-shadow: 0 0 5px 2px #45bdff;
+}
 
-  .close-btn-container {
-    
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 5px;
-  }
+.form-new-product input {
+  padding: 5px 5px;
+  font-size: 20px;
+  background-color: #0d82c1a0;
+  color: whitesmoke;
+  outline: solid 2px #17a1ec;
+  border-radius: 5px;
+  border: none;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
 
-  .close-btn {
-    color: whitesmoke;
-    cursor: pointer;
-  }
+.form-new-product input:focus {
+  outline: solid 2px white;
+}
+
+.form-new-product label {
+  font-size: 12px;
+  font-weight: 600;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+}
+.formBtn {
+  display: flex;
+  align-self: center;
+  width: fit-content;
+  color: white;
+  font-weight: 600;
+  /* width: 100px; */
+  cursor: pointer;
+  padding: 7px 10px;
+  margin-top: 20px;
+  background: none;
+  border: solid 2px #45bdff;
+  border-radius: 5px;
+  transition: all ease 0.3s;
+}
+
+.formBtn:hover {
+  background: #45bdff;
+}
+
+.close-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 20px;
+  color: rgba(159, 153, 153, 0.537);
+  transition: all ease 0.3s;
+}
+
+.close-btn:hover {
+  color: whitesmoke;
+}

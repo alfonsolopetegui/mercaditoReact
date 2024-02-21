@@ -58,11 +58,7 @@ const Mesa = (props) => {
           <div className={styles["mesa-btn-container"]}>
             <button onClick={handleMenu} className={styles["mesa-btn"]}>
               <h4>Menú</h4>
-              {openCarta ? (
-                <FontAwesomeIcon icon={faChevronLeft} />
-              ) : (
-                <FontAwesomeIcon icon={faChevronRight} />
-              )}
+              
             </button>
             {/* <button onClick={handler}>Cerrar</button> */}
           </div>

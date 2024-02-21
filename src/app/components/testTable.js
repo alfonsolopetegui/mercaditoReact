@@ -61,7 +61,7 @@ const TestTable = () => {
             <th>Nombre</th>
             <th>Precio Base</th>
             <th>Precio</th>
-            <th>Cantidad</th>
+            
             <th>Categoría</th>
           </tr>
           {selected.map((producto, index) => (

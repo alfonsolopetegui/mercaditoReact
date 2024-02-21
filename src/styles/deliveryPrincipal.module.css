@@ -1,9 +1,9 @@
 .pedidos-container {
-  padding: 15px;
+  padding: 12vh 15px 15px 15px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 90vh;
+  height: 100%;
 }
 
 .pedido-grande-container {

@@ -2,11 +2,16 @@
 .btn-counter {
     background: none;
     border: none;
-    cursor: pointer;
 }
 
 .icono-counter {
-    color: #3E7CB1;
+    color: #45bdff;
     font-size: 20px;
     padding: 0 5px;
+    transition: ease all .3s;
+    cursor: pointer;
+}
+
+.icono-counter:hover {
+    color: #45beff96;
 }

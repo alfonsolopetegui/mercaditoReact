@@ -15,7 +15,7 @@
     align-items: center;
     border-radius: 15px;
     box-shadow: 0px 2px 7px 0.3px grey;
-    padding: 6px 0px;
+    padding: 8px 0px;
     background-color: whitesmoke;
   }
   
@@ -27,9 +27,7 @@
     background: whitesmoke;
   }
   
-  .search-input-container input:focus-within {
-    border: none;
-  }
+ 
   
   .auto-container {
     position: absolute;

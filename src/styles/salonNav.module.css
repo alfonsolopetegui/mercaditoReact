@@ -1,113 +1,142 @@
 .salon-nav-container {
-    padding: 15px 5px 10px 10px;
-    display: flex;
-  }
-  .salon-nav-btn {
-    /* border: 1px solid black; */
-    box-shadow: 0px 2px 5px 2px grey;
-    border-radius: 15px;
-    font-size: 7px;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-  }
+  padding: 15px 5px 10px 10px;
+  display: flex;
+}
+.salon-nav-btn {
+  width: 120px;
+  /* border: 1px solid black; */
+  box-shadow: 0px 2px 5px 2px grey;
+  border-radius: 15px;
+  font-size: 7px;
+  /* width: 80px;
+  height: 80px; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding-left: 10px;
+}
 
-  .salon-nav-btn h1 {
-    color: #F18F01;
-  }
+.salon-nav-btn:hover {
+  background-color: rgba(0, 0, 0, 0.696);
+}
 
-  .salon-btn-icon {
-    font-size: 45px;
-    color: #F18F01;
-  }
+.salon-nav-btn h1 {
+  color: #45bdff;
+}
 
-  .mesa-form-container {
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.429);
-    z-index: 20;
-  }
-  
-  .mesa-form {
-    border-radius: 15px;
-    border: none;
-    width: 300px;
-    /* height: 100vh; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    padding: 10px 20px 20px 20px;
-    /* position: fixed; */
-  }
+.salon-btn-icon {
+  font-size: 45px;
+  color: #ff4560;
+}
 
-  .close-btn-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
+.mesa-form-container {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.628);
+  z-index: 20;
+}
 
-  .close-btn {
-    cursor: pointer;
-    font-size:20px;
-    color: rgba(0, 0, 0, 0.537);
-  }
-  .mesa-form h2 {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    color: #F18F01;
-  }
+.mesa-form {
+  border-radius: 15px;
+  color: whitesmoke;
+  border: none;
+  width: 300px;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+  padding: 10px 20px 30px 20px;
+  box-shadow: 0 0 5px 2px #45bdff;
+  /* position: fixed; */
+}
 
-  .mesa-form button {
-    color: white;
-    font-weight: 600;
-    /* width: 100px; */
-    cursor: pointer;
-    padding: 5px 10px;
-    margin-top: 5px;
-    background-color: #F18F01;
-    border: none;
-  }
-  
-  .mesa-form form {
-    /* width: 200px; */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    /* background-color: azure; */
-    /* padding: 20px; */
-  }
+.close-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
-  }
+.close-btn {
+  cursor: pointer;
+  font-size: 20px;
+  color: rgba(159, 153, 153, 0.537);
+  transition: all ease .3s;
+}
 
-  .form-field input {
-    height: 30px;
-    padding: 5px;
-    font-size: 20px;
-  }
+.close-btn:hover {
+  color: whitesmoke;
+}
 
-  .mesa-form-btn-container {
-    display: flex;
-    justify-content: center;
-  }
+.mesa-form h2 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: whitesmoke;
+}
 
-  .mesa-existente {
-    color: red;
-    text-align: center;
-    padding-top: 20px;
-  }
+.mesa-form button {
+  color: white;
+  font-weight: 600;
+  /* width: 100px; */
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-top: 20px;
+  background: none;
+  border: solid 2px #45bdff;
+  border-radius: 5px;
+  transition: all ease .3s;
+}
+.mesa-form button:hover {
+  background: #45bdff;
+}
+
+.mesa-form form {
+  /* width: 200px; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: azure; */
+  /* padding: 20px; */
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.form-field input {
+  /* height: 30px; */
+  padding: 5px 5px;
+  font-size: 20px;
+  background-color: #0d82c1a0;
+  color: whitesmoke;
+  outline: solid 2px #17a1ec;
+  border-radius: 5px;
+  border: none;
+  margin-top: 3px;
+}
+
+.form-field input:focus {
+  outline: solid 2px white;
+}
+
+.mesa-form-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.mesa-existente {
+  color: red;
+  text-align: center;
+  padding-top: 20px;
+}

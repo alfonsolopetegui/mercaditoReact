@@ -183,19 +183,11 @@ const Pedido = ({ data }) => {
             <h3>{data.numeroPedido}</h3>
             <button onClick={handleMenu} className={styles["pedido-btn"]}>
               <h4>Menú </h4>
-              {verCarta ? (
-                <FontAwesomeIcon icon={faChevronUp} />
-              ) : (
-                <FontAwesomeIcon icon={faChevronDown} />
-              )}
+             
             </button>
             <button onClick={handleSeleccion} className={styles["pedido-btn"]}>
               <h4>Contenido</h4>
-              {visible ? (
-                <FontAwesomeIcon icon={faChevronUp} />
-              ) : (
-                <FontAwesomeIcon icon={faChevronDown} />
-              )}
+           
             </button>
           </div>
           <select
